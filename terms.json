@@ -1,4 +1,6 @@
 {
     "frontend": ["front-end"],
-    "site": ["website"]
+    "backend": ["back-end"],
+    "site": ["website", "web-site"],
+    "hotkey": ["hot key", "hot-key"]
 }

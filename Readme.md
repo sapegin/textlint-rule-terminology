@@ -1,6 +1,6 @@
-# termstextlint-rule-terminology
+# textlint-rule-terminology
 
-[![npm](https://img.shields.io/npm/v/termstextlint-rule-terminology.svg)](https://www.npmjs.com/package/termstextlint-rule-terminology)
+[![npm](https://img.shields.io/npm/v/textlint-rule-terminology.svg)](https://www.npmjs.com/package/textlint-rule-terminology)
 
 [textlint](https://github.com/textlint/textlint) rule to check correct terms spelling.
 
@@ -43,7 +43,7 @@ Read more about [configuring textlint](https://github.com/textlint/textlint/blob
 
 ## Changelog
 
-The changelog can be found on the [Releases page](https://github.com/sapegin/termstextlint-rule-terminology/releases).
+The changelog can be found on the [Releases page](https://github.com/sapegin/textlint-rule-terminology/releases).
 
 ## Contributing
 
@@ -51,6 +51,6 @@ Everyone is welcome to contribute. Please take a moment to review the [contribut
 
 ## Authors and license
 
-[Artem Sapegin](http://sapegin.me) and [contributors](https://github.com/sapegin/termstextlint-rule-terminology/graphs/contributors).
+[Artem Sapegin](http://sapegin.me) and [contributors](https://github.com/sapegin/textlint-rule-terminology/graphs/contributors).
 
 MIT License, see the included [License.md](License.md) file.

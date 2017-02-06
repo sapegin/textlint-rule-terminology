@@ -2,5 +2,7 @@
     "frontend": ["front-end"],
     "backend": ["back-end"],
     "site": ["website", "web-site"],
-    "hotkey": ["hot key", "hot-key"]
+    "hotkey": ["hot key", "hot-key"],
+    "command line tool": ["CLI tool"],
+    "IDs": ["id's", "id’s"]
 }

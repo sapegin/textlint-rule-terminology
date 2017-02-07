@@ -1,5 +1,6 @@
 # textlint-rule-terminology
 
+[![Build Status](https://travis-ci.org/sapegin/textlint-rule-terminology.svg)](https://travis-ci.org/sapegin/textlint-rule-terminology)
 [![npm](https://img.shields.io/npm/v/textlint-rule-terminology.svg)](https://www.npmjs.com/package/textlint-rule-terminology)
 
 [textlint](https://github.com/textlint/textlint) rule to check correct terms spelling.

@@ -14,6 +14,8 @@ For example:
 * website → site
 * Internet → internet
 
+(You can customize the rules as you wish.)
+
 ## Installation
 
 ```shell

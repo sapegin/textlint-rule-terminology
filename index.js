@@ -15,7 +15,7 @@ function reporter(context, options = {}) {
 	// Make RegExps for exact match words
 	const rules = terms.map(term => (
 		typeof term === 'string'
-			? [`\\b${term}\\b`, term] // Exact match of a word
+			? [`\\b${term}(?![\\w-])`, term] // Exact match of a word
 			: term
 	));
 
@@ -74,7 +74,7 @@ function getTerms(defaultTerms, terms) {
 }
 
 function getRegExp(variants) {
-	return new RegExp(`(\\b(?:${variants.join('|')})\\b)`, 'ig');
+	return new RegExp(`(\\b(?:${variants.join('|')})(?![\\w-]))`, 'ig');
 }
 
 function getRuleForMatch(rules, match) {

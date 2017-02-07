@@ -35,8 +35,11 @@ By default the rule will check against my personal [terminology](./terms.json). 
 ```js
 {
   "rules": {
-    "defaultTerms": true,
     "terminology": {
+      // Load default terms (see terms.json in the repository)
+      "defaultTerms": true,
+      // Syntax elements to skip. Overrides the default
+      "skip": ["Blockquote"],
       // List of terms
       "terms": [
         // Exact spelling including the case
@@ -62,8 +65,6 @@ By default the rule will check against my personal [terminology](./terms.json). 
       // OR load terms from npm
       "terms": "@johnsmith/terms"
     }
-    // Syntax elements to skip. Overrides the default
-    "skip": ["Blockquote"]
   }
 }
 ```

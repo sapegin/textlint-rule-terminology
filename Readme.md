@@ -25,6 +25,7 @@ By default the rule will check against my personal [terminology](./terms.json). 
 ```js
 {
   "rules": {
+    "defaultTerms": true,
     "terminology": {
       // List of terms
       "terms": [

@@ -3,12 +3,14 @@ const { find, upperFirst } = require('lodash');
 
 const DEFAULT_OPTIONS = {
 	terms: './terms.json',
+	skip: ['BlockQuote'],
 };
 const sentenceStartRegExp = /\w+[.?!]\)? $/;
 
 function reporter(context, options = {}) {
 	const opts = Object.assign({}, DEFAULT_OPTIONS, options);
 	const terms = typeof opts.terms === 'string' ? require(opts.terms) : opts.terms;
+	const skip = options.skip;
 
 	// Make RegExps for exact match words
 	const rules = terms.map(term => (
@@ -25,7 +27,7 @@ function reporter(context, options = {}) {
 	const { Syntax, RuleError, report, fixer, getSource } = context;
 	return {
 		[Syntax.Str](node) {
-			if (helper.isChildNode(node, [Syntax.BlockQuote])) {
+			if (helper.isChildNode(node, skip.map((rule) => Syntax[rule]))) {
 				return false;
 			}
 

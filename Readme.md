@@ -51,6 +51,8 @@ By default the rule will check against my personal [terminology](./terms.json). 
       // OR load terms from npm
       "terms": "@johnsmith/terms"
     }
+    // Syntax elements to skip. Overrides the default
+    "skip": ["Blockquote"]
   }
 }
 ```

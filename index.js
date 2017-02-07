@@ -65,7 +65,7 @@ function reporter(context, options = {}) {
 }
 
 function getRegExp(variants) {
-	return new RegExp(`(${variants.join('|')})`, 'ig');
+	return new RegExp(`(\\b(?:${variants.join('|')})\\b)`, 'ig');
 }
 
 function getRuleForMatch(rules, match) {

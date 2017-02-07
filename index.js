@@ -2,14 +2,15 @@ const { RuleHelper } = require('textlint-rule-helper');
 const { find, upperFirst } = require('lodash');
 
 const DEFAULT_OPTIONS = {
-	terms: './terms.json',
+	terms: [],
 	skip: ['BlockQuote'],
+	defaultTerms: true,
 };
 const sentenceStartRegExp = /\w+[.?!]\)? $/;
 
 function reporter(context, options = {}) {
 	const opts = Object.assign({}, DEFAULT_OPTIONS, options);
-	const terms = typeof opts.terms === 'string' ? require(opts.terms) : opts.terms;
+	const terms = getTerms(opts.defaultTerms, opts.terms);
 	const skip = options.skip;
 
 	// Make RegExps for exact match words
@@ -64,6 +65,13 @@ function reporter(context, options = {}) {
 			});
 		},
 	};
+}
+
+function getTerms(defaultTerms, terms) {
+	const defaults = defaultTerms ? require('./terms.json') : [];
+	const extras = typeof terms === 'string' ? require(terms) : terms;
+
+	return defaults.concat(extras);
 }
 
 function getRegExp(variants) {

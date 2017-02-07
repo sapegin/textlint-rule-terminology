@@ -11,7 +11,6 @@ const sentenceStartRegExp = /\w+[.?!]\)? $/;
 function reporter(context, options = {}) {
 	const opts = Object.assign({}, DEFAULT_OPTIONS, options);
 	const terms = getTerms(opts.defaultTerms, opts.terms);
-	const skip = options.skip;
 
 	// Make RegExps for exact match words
 	const rules = terms.map(term => (
@@ -28,7 +27,7 @@ function reporter(context, options = {}) {
 	const { Syntax, RuleError, report, fixer, getSource } = context;
 	return {
 		[Syntax.Str](node) {
-			if (helper.isChildNode(node, skip.map((rule) => Syntax[rule]))) {
+			if (helper.isChildNode(node, opts.skip.map((rule) => Syntax[rule]))) {
 				return false;
 			}
 

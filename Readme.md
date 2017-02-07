@@ -1,9 +1,10 @@
 # textlint-rule-terminology
 
+[![textlint fixable rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/)
 [![Build Status](https://travis-ci.org/sapegin/textlint-rule-terminology.svg)](https://travis-ci.org/sapegin/textlint-rule-terminology)
 [![npm](https://img.shields.io/npm/v/textlint-rule-terminology.svg)](https://www.npmjs.com/package/textlint-rule-terminology)
 
-[textlint](https://github.com/textlint/textlint) rule to check correct terms spelling.
+[textlint](https://github.com/textlint/textlint) rule to check and fix correct terms spelling.
 
 ## Installation
 
@@ -14,7 +15,7 @@ npm install textlint-rule-terminology
 ## Usage
 
 ```shell
-textlint --format pretty-error --rule terminology Readme.md
+textlint --fix --rule terminology Readme.md
 ```
 
 ## Configuration
@@ -26,11 +27,25 @@ By default the rule will check against my personal [terminology](./terms.json). 
   "rules": {
     "terminology": {
       // List of terms
-      "terms": {
-        // Correct spelling: list of possible mistakes
-        "frontend": ["front-end"],
-        "site": ["website"]
-      },
+      "terms": [
+        // Exact spelling including the case
+        "JavaScript",
+        "ESLint",
+        "Sass",
+        "Less",
+        "npm",
+        // RegExp (case-insensitive) → replacement
+        ["front[- ]end(\\w*)", "frontend$1"],
+        ["back[- ]end(\\w*)", "backend$1"],
+        ["web[- ]?site(s?)", "site$1"],
+        ["hot[- ]key", "hotkey"],
+        ["repo\\b", "repository"],
+        ["CLI tool(s?)", "command line tool$1"],
+        ["build system(s?)", "build tool$1"],
+        ["id['’]?s", "IDs"],
+        ["(\\w+[^.?!]\\)? )webpack", "$1webpack"],
+        ["(\\w+[^.?!]\\)? )internet", "$internet"]
+      ],
       // OR load terms from a file
       "terms": "~/terms.json",
       // OR load terms from npm

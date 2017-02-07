@@ -14,7 +14,8 @@
   },
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "terms.json"
   ],
   "scripts": {
     "test": "npm run lint",

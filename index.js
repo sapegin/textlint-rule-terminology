@@ -1,3 +1,5 @@
+const fs = require('fs');
+const stripJsonComments = require('strip-json-comments');
 const { RuleHelper } = require('textlint-rule-helper');
 const { find, upperFirst } = require('lodash');
 
@@ -67,10 +69,15 @@ function reporter(context, options = {}) {
 }
 
 function getTerms(defaultTerms, terms) {
-	const defaults = defaultTerms ? require('./terms.json') : [];
-	const extras = typeof terms === 'string' ? require(terms) : terms;
+	const defaults = defaultTerms ? loadJson('./terms.json') : [];
+	const extras = typeof terms === 'string' ? loadJson(terms) : terms;
 
 	return defaults.concat(extras);
+}
+
+function loadJson(filepath) {
+	const json = fs.readFileSync(require.resolve(filepath), 'utf8');
+	return JSON.parse(stripJsonComments(json));
 }
 
 function getRegExp(variants) {

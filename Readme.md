@@ -16,6 +16,8 @@ For example:
 
 (You can customize the rules as you wish.)
 
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/1p0s3e2p1U1m1r3N2Q41/terminology.png)
+
 ## Installation
 
 ```shell

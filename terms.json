@@ -10,6 +10,7 @@
   "UglifyJS",
   ["Node[ .]js", "Node"], // Official is Node.js, but it’s way too complicated
   ["React[ .]js", "React"],
+  ["HTTP[ /]2(?:\\.0)?", "HTTP/2"],
   ["OS X", "macOS"],
   ["Mac ?OS", "macOS"],
   ["a npm", "an npm"],

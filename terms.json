@@ -39,6 +39,8 @@
   ["change-?log(s?)", "change log$1"],
   ["source-?map(s?)", "source map$1"],
   ["pre ?release(s?)", "pre-release$1"],
+  ["server ?side", "server-side"],
+  ["client ?side", "client-side"],
   ["filetype(s?)", "file type$1"],
   ["auto[- ]?complete", "autocomplete"],
   ["auto[- ]?format", "autoformat"],

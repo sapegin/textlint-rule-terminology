@@ -11,7 +11,7 @@
   "Sass",
   "TypeScript",
   "UglifyJS",
-  ["Node[ .]js", "Node"], // Official is Node.js, but it’s way too complicated
+  ["Node(?:js)?", "Node.js"],
   ["React[ .]js", "React"],
   ["StackOverflow", "Stack Overflow"],
   ["HTTP[ /]2(?:\\.0)?", "HTTP/2"],

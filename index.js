@@ -75,7 +75,7 @@ function loadJson(filepath) {
 }
 
 function getRegExp(variants) {
-	return new RegExp(`(?:^|[^-\\w])((?:${variants.join('|')})(?![\\w-]))`, 'ig');
+	return new RegExp(`(?:^|[^-\\w])((?:${variants.join('|')})(?= |\\. |\\.$|$))`, 'ig');
 }
 
 // Make RegExps for exact match words

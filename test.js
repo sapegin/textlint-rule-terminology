@@ -39,6 +39,23 @@ describe('getRegExp', () => {
 		expect(result).toBeFalsy();
 	});
 
+	it('should match a pattern at the end of a sentence', () => {
+		const result = getRegExp(variants).exec('My javascript.');
+		expect(result).toBeTruthy();
+		expect(result[1]).toBe('javascript');
+	});
+
+	it('should match a pattern at the end of a sentence in the middle of a string', () => {
+		const result = getRegExp(variants).exec('My javascript. My webpack.');
+		expect(result).toBeTruthy();
+		expect(result[1]).toBe('javascript');
+	});
+
+	it('should not match a pattern in as a part of a file name', () => {
+		const result = getRegExp(variants).exec('javascript.md');
+		expect(result).toBeFalsy();
+	});
+
 	it('should match a pattern regardless of its case', () => {
 		const result = getRegExp(variants).exec('Javascript is good');
 		expect(result).toBeTruthy();
@@ -136,6 +153,10 @@ tester.run('textlint-rule-terminology', rule, {
 		},
 		{
 			text: 'some-plugin-javascript',
+		},
+		{
+			// Should not warn about file names
+			text: 'Changelog.md',
 		},
 	],
 	invalid: [

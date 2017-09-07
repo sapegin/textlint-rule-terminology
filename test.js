@@ -117,6 +117,10 @@ tester.run('textlint-rule-terminology', rule, {
 			// Should skip URLs
 			text: 'My [code](http://example.com/javascript) is good',
 		},
+		{
+			// Should keep a capital letter at the beginning of a sentense
+			text: 'Webpack is good',
+		},
 	],
 	invalid: [
 		{

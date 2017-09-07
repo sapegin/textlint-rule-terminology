@@ -13,13 +13,7 @@ const sentenceStartRegExp = /\w+[.?!]\)? $/;
 function reporter(context, options = {}) {
 	const opts = Object.assign({}, DEFAULT_OPTIONS, options);
 	const terms = getTerms(opts.defaultTerms, opts.terms);
-
-	// Make RegExps for exact match words
-	const rules = terms.map(term => (
-		typeof term === 'string'
-			? [`\\b${term}(?![\\w-])`, term] // Exact match of a word
-			: term
-	));
+	const rules = getExactMatchRegExps(terms);
 
 	// Regexp for all possible mistakes
 	const allMistakes = rules.map(rule => rule[0]);
@@ -84,6 +78,15 @@ function getRegExp(variants) {
 	return new RegExp(`(\\b(?:${variants.join('|')})(?![\\w-]))`, 'ig');
 }
 
+// Make RegExps for exact match words
+function getExactMatchRegExps(terms) {
+	return terms.map(term => (
+		typeof term === 'string'
+			? [`\\b${term}(?![\\w-])`, term] // Exact match of a word
+			: term
+	));
+}
+
 function getRuleForMatch(rules, match) {
 	return find(rules, rule => new RegExp(rule[0], 'i').test(match));
 }
@@ -91,4 +94,9 @@ function getRuleForMatch(rules, match) {
 module.exports = {
 	linter: reporter,
 	fixer: reporter,
+	test: {
+		getRegExp,
+		getExactMatchRegExps,
+		getRuleForMatch,
+	},
 };

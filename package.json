@@ -18,9 +18,13 @@
     "terms.json"
   ],
   "scripts": {
-    "test": "npm run lint",
-    "lint": "eslint . --ext .js --fix",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "pretest": "npm run lint",
+    "test": "npm run test:jest",
+    "lint": "eslint . --fix",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "test:jest": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [
     "textlintrule",
@@ -34,8 +38,10 @@
   "devDependencies": {
     "eslint": "^3.15.0",
     "eslint-config-tamia": "^3.3.2",
+    "jest": "^21.0.1",
     "semantic-release": "^6.3.2",
-    "semantic-release-tamia": "^1.1.1"
+    "semantic-release-tamia": "^1.1.1",
+    "textlint-tester": "^2.2.4"
   },
   "dependencies": {
     "lodash": "^4.17.4",

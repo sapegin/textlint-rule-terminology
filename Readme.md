@@ -73,6 +73,18 @@ By default the rule will check against my personal [terminology](./terms.json). 
 
 Read more about [configuring textlint](https://github.com/textlint/textlint/blob/master/docs/configuring.md).
 
+## Tips & tricks
+
+Use [textlint-filter-rule-comments](https://github.com/textlint/textlint-filter-rule-comments) to disable terminology check for particular paragraphs:
+
+```markdown
+<!-- textlint-disable terminology -->
+
+Oh my javascript!
+
+<!-- textlint-enable -->
+```
+
 ## Changelog
 
 The changelog can be found on the [Releases page](https://github.com/sapegin/textlint-rule-terminology/releases).

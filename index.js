@@ -52,7 +52,7 @@ function reporter(context, options = {}) {
 
 					const range = [index, index + matched.length];
 					const fix = fixer.replaceTextRange(range, replacement);
-					const message = `Incorrect usage of the term: “${matched}”, use “${replacement}” instead`;
+					const message = `Incorrect usage of the term: “${matched.trim()}”, use “${replacement.trim()}” instead`;
 					report(node, new RuleError(message, { index, fix }));
 				}
 
@@ -75,14 +75,14 @@ function loadJson(filepath) {
 }
 
 function getRegExp(variants) {
-	return new RegExp(`(\\b(?:${variants.join('|')})(?![\\w-]))`, 'ig');
+	return new RegExp(`(?:^|[^-\\w])((?:${variants.join('|')})(?![\\w-]))`, 'ig');
 }
 
 // Make RegExps for exact match words
 function getExactMatchRegExps(terms) {
 	return terms.map(term => (
 		typeof term === 'string'
-			? [`\\b${term}(?![\\w-])`, term] // Exact match of a word
+			? [`\\b${term}\\b`, term] // Exact match of a word
 			: term
 	));
 }

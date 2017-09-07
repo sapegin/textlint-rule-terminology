@@ -34,8 +34,7 @@ describe('getRegExp', () => {
 		expect(result).toBeFalsy();
 	});
 
-	// FIXME
-	it.skip('should not match a pattern in at the end of a word with a hyphen', () => {
+	it('should not match a pattern in at the end of a word with a hyphen', () => {
 		const result = getRegExp(variants).exec('Foo uber-webpack bar');
 		expect(result).toBeFalsy();
 	});
@@ -85,15 +84,6 @@ describe('getExactMatchRegExps', () => {
 		expect(regexp.test(`foo${term}`)).toBeFalsy();
 		expect(regexp.test(`${term}foo`)).toBeFalsy();
 	});
-
-	it('returned RegExp should not match term as a part of another hyphenated word', () => {
-		const result = getExactMatchRegExps(['webpack']);
-		const regexp = new RegExp(result[0][0]);
-		const term = result[0][1];
-		// FIXME
-		// expect(regexp.test(`foo-${term}`)).toBeFalsy();
-		expect(regexp.test(`${term}-foo`)).toBeFalsy();
-	});
 });
 
 describe('getRuleForMatch', () => {
@@ -120,6 +110,32 @@ tester.run('textlint-rule-terminology', rule, {
 		{
 			// Should keep a capital letter at the beginning of a sentense
 			text: 'Webpack is good',
+		},
+		// Should not warn when incorrect term is used as a part of another word
+		{
+			text: 'Your javascriptish code',
+		},
+		{
+			text: 'javascriptish',
+		},
+		{
+			text: 'Your uberjavascript code',
+		},
+		{
+			text: 'uberjavascript',
+		},
+		// Should not warn when incorrect term is used as a part of a hyphenates word
+		{
+			text: 'Install javascript-some-plugin here',
+		},
+		{
+			text: 'javascript-some-plugin',
+		},
+		{
+			text: 'Install some-plugin-javascript here',
+		},
+		{
+			text: 'some-plugin-javascript',
 		},
 	],
 	invalid: [

@@ -109,12 +109,30 @@ tester.run('textlint-rule-terminology', rule, {
 		{
 			text: 'My JavaScript is good',
 		},
+		{
+			// Should skip code examples
+			text: 'My `javascript` is good',
+		},
+		{
+			// Should skip URLs
+			text: 'My [code](http://example.com/javascript) is good',
+		},
 	],
 	invalid: [
 		{
 			// One word
 			text: 'My Javascript is good',
 			output: 'My JavaScript is good',
+			errors: [
+				{
+					message: 'Incorrect usage of the term: “Javascript”, use “JavaScript” instead',
+				},
+			],
+		},
+		{
+			// Keep formatting
+			text: 'My **Javascript** is good',
+			output: 'My **JavaScript** is good',
 			errors: [
 				{
 					message: 'Incorrect usage of the term: “Javascript”, use “JavaScript” instead',

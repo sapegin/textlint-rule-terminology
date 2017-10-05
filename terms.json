@@ -35,6 +35,7 @@
   ["id['’]?s", "IDs"],
   ["back[- ]end(\\w*)", "backend$1"],
   ["front[- ]end(\\w*)", "frontend$1"],
+  ["end ?to ?end", "end-to-end"],
   ["hot[- ]key", "hotkey"],
   ["build system(s?)", "build tool$1"],
   ["CLI tool(s?)", "command line tool$1"],

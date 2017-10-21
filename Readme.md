@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/sapegin/textlint-rule-terminology.svg)](https://travis-ci.org/sapegin/textlint-rule-terminology)
 [![npm](https://img.shields.io/npm/v/textlint-rule-terminology.svg)](https://www.npmjs.com/package/textlint-rule-terminology)
 
-[textlint](https://github.com/textlint/textlint) rule to check and fix term spelling in your tech writing.
+[Textlint](https://github.com/textlint/textlint) rule to check and fix terms, brands and technologies spelling in your tech writing in English.
 
 For example:
 
@@ -85,9 +85,15 @@ Oh my javascript!
 <!-- textlint-enable -->
 ```
 
-## Changelog
+## Other textlint rules
 
-The changelog can be found on the [Releases page](https://github.com/sapegin/textlint-rule-terminology/releases).
+* [textlint-rule-apostrophe](https://github.com/sapegin/textlint-rule-apostrophe) — correct apostrophe usage
+* [textlint-rule-diacritics](https://github.com/sapegin/textlint-rule-diacritics) — words with diacritics
+* [textlint-rule-stop-words](https://github.com/sapegin/textlint-rule-stop-words) — filler words, buzzwords and clichés
+
+## Change log
+
+The change log can be found on the [Releases page](https://github.com/sapegin/textlint-rule-terminology/releases).
 
 ## Contributing
 

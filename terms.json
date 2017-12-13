@@ -1,18 +1,41 @@
 [
   // Brands
   "Airbnb",
+  "AppleScript",
+  "AppVeyor",
   "AVA",
+  "BrowserStack",
   "Browsersync",
+  "Codecov",
+  "CodePen",
+  "CodeSandbox",
+  "DefinitelyTyped",
+  "EditorConfig",
   "ESLint",
+  "GitHub",
+  "GraphQL",
   "JavaScript",
+  "JetBrains",
+  "jQuery",
+  "LinkedIn",
   "Lodash",
+  "MacBook",
   "Markdown",
+  "OpenType",
+  "PayPal",
+  "PhpStorm",
+  "RubyMine",
   "Sass",
+  "SemVer",
   "TypeScript",
   "UglifyJS",
+  "WebStorm",
+  "WordPress",
+  "YouTube",
   ["JSDocs?", "JSDoc"],
   ["Node(?:js)?", "Node.js"],
   ["React[ .]js", "React"],
+  ["SauceLabs", "Sauce Labs"],
   ["StackOverflow", "Stack Overflow"],
   ["HTTP[ /]2(?:\\.0)?", "HTTP/2"],
   ["OS X", "macOS"],
@@ -29,6 +52,13 @@
   "CSS",
   "HTML",
   "URL",
+
+  // APIs
+  ["RegExp?", "RegExp"],
+
+  // Names
+  "McKenzie",
+  "McConnell",
 
   // Words and phrases
   "ID", // http://stackoverflow.com/questions/1151338/id-or-id-on-user-interface

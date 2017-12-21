@@ -1,8 +1,37 @@
 const TextLintTester = require('textlint-tester');
 const rule = require('./index');
 
-const { getRegExp, getExactMatchRegExps, getRuleForMatch } = rule.test;
+const { getTerms, getRegExp, getExactMatchRegExps, getRuleForMatch } = rule.test;
 const tester = new TextLintTester();
+
+describe('getTerms', () => {
+	it('should load default terms', () => {
+		const result = getTerms(true);
+		expect(result).toBeTruthy();
+		expect(result[0]).toBe('Airbnb');
+	});
+
+	it('should load user terms', () => {
+		const result = getTerms(false, ['coffee']);
+		expect(result).toBeTruthy();
+		expect(result).not.toContain('Airbnb');
+		expect(result).toContain('coffee');
+	});
+
+	it('should append user terms to defaults', () => {
+		const result = getTerms(true, ['coffee']);
+		expect(result).toBeTruthy();
+		expect(result).toContain('Airbnb');
+		expect(result).toContain('coffee');
+	});
+
+	it('should load user terms from a file', () => {
+		const result = getTerms(false, 'test/terms.json');
+		expect(result).toBeTruthy();
+		expect(result).not.toContain('Airbnb');
+		expect(result[0]).toContain('pizza');
+	});
+});
 
 describe('getRegExp', () => {
 	const variants = ['JavaScript', 'webpack'];

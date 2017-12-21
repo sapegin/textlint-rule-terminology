@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const stripJsonComments = require('strip-json-comments');
 const { RuleHelper } = require('textlint-rule-helper');
 const { find, upperFirst } = require('lodash');
@@ -65,13 +66,26 @@ function reporter(context, options = {}) {
 function getTerms(defaultTerms, terms) {
 	const defaults = defaultTerms ? loadJson('./terms.json') : [];
 	const extras = typeof terms === 'string' ? loadJson(terms) : terms;
-
 	return defaults.concat(extras);
 }
 
 function loadJson(filepath) {
-	const json = fs.readFileSync(require.resolve(filepath), 'utf8');
+	const json = readTermsFile(path.resolve(filepath));
 	return JSON.parse(stripJsonComments(json));
+}
+
+function readTermsFile(filepath) {
+	try {
+		return fs.readFileSync(filepath, 'utf8');
+	}
+	catch (err) {
+		if (err.code === 'ENOENT') {
+			throw new Error(`Terms file not found: ${filepath}`);
+		}
+		else {
+			throw err;
+		}
+	}
 }
 
 function getRegExp(variants) {
@@ -95,6 +109,7 @@ module.exports = {
 	linter: reporter,
 	fixer: reporter,
 	test: {
+		getTerms,
 		getRegExp,
 		getExactMatchRegExps,
 		getRuleForMatch,

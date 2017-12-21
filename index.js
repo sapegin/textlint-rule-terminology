@@ -64,7 +64,7 @@ function reporter(context, options = {}) {
 }
 
 function getTerms(defaultTerms, terms) {
-	const defaults = defaultTerms ? loadJson(path.resolve(__dirname, './terms.json')) : [];
+	const defaults = defaultTerms ? loadJson(path.resolve(__dirname, 'terms.json')) : [];
 	const extras = typeof terms === 'string' ? loadJson(terms) : terms;
 	return defaults.concat(extras);
 }

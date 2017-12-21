@@ -7,7 +7,9 @@ node_js:
   - 6
   - 7
 after_success:
-  - npm run semantic-release
+  - npm install -g semantic-release
+  - npm install --no-save semantic-release-tamia
+  - semantic-release pre && npm publish && semantic-release post
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/

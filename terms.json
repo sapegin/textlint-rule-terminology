@@ -133,6 +133,7 @@
   // Multiple words
   ["change-?log(s?)", "change log$1"],
   ["css-?in-?js", "CSS in JS"],
+  ["code-?review(s?)", "code review$1"],
   ["code-?splitting", "code splitting"],
   ["end-?user(s?)", "end user$1"],
   ["file-?type(s?)", "file type$1"],

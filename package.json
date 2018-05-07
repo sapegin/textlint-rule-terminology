@@ -38,17 +38,11 @@
     "eslint": "^3.15.0",
     "eslint-config-tamia": "^3.3.2",
     "jest": "^21.0.1",
-    "semantic-release-tamia": "^1.1.1",
     "textlint-tester": "^2.2.4"
   },
   "dependencies": {
     "lodash": "^4.17.4",
     "strip-json-comments": "^2.0.1",
     "textlint-rule-helper": "^2.0.0"
-  },
-  "release": {
-    "analyzeCommits": "semantic-release-tamia/analyzeCommits",
-    "generateNotes": "semantic-release-tamia/generateNotes",
-    "verifyRelease": "semantic-release-tamia/verifyRelease"
   }
 }

@@ -39,6 +39,7 @@
   ["React[ .]js", "React"],
   ["SauceLabs", "Sauce Labs"],
   ["StackOverflow", "Stack Overflow"],
+  ["styled ?components", "styled-components"],
   ["HTTP[ /]2(?:\\.0)?", "HTTP/2"],
   ["OS X", "macOS"],
   ["Mac ?OS", "macOS"],

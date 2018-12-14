@@ -44,7 +44,6 @@
   ["OS X", "macOS"],
   ["Mac ?OS", "macOS"],
   ["a npm", "an npm"],
-  "npm",
 
   // ECMAScript
   "ECMAScript",
@@ -164,6 +163,7 @@
   ["(\\w+[^.?!]\\)? )internet", "$1internet"],
   ["(\\w+[^.?!]\\)? )stylelint", "$1stylelint"],
   ["(\\w+[^.?!]\\)? )webpack", "$1webpack"],
+  ["(\\w+[^.?!]\\)? )npm", "$1npm"],
 
   // Typos
   ["environemnt(s?)", "environment$1"],

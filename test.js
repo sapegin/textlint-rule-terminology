@@ -31,6 +31,14 @@ describe('getTerms', () => {
 		expect(result).not.toContain('Airbnb');
 		expect(result[0]).toContain('pizza');
 	});
+
+	it('should remove the excluded terms', () => {
+		const result = getTerms(true, ['coffee', 'mocha'], ['CSS', 'coffee']);
+		expect(result).toBeTruthy();
+		expect(result).not.toContain('CSS');
+		expect(result).not.toContain('coffee');
+		expect(result).toContain('mocha');
+	});
 });
 
 describe('getRegExp', () => {

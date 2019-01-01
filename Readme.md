@@ -65,7 +65,11 @@ You can configure the rule in your `.textlintrc`:
       // OR load terms from a file
       "terms": "~/terms.json",
       // OR load terms from npm
-      "terms": "@johnsmith/terms"
+      "terms": "@johnsmith/terms",
+      // Excludes terms
+      "exclude": [
+        "CSS"
+      ]
     }
   }
 }

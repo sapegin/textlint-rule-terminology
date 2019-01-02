@@ -41,7 +41,7 @@
     "textlint-tester": "^2.2.4"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.11",
     "strip-json-comments": "^2.0.1",
     "textlint-rule-helper": "^2.0.0"
   }

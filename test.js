@@ -1,7 +1,12 @@
 const TextLintTester = require('textlint-tester');
 const rule = require('./index');
 
-const { getTerms, getRegExp, getExactMatchRegExps, getRuleForMatch } = rule.test;
+const {
+	getTerms,
+	getRegExp,
+	getExactMatchRegExps,
+	getRuleForMatch,
+} = rule.test;
 const tester = new TextLintTester();
 
 describe('getTerms', () => {
@@ -119,7 +124,9 @@ describe('getExactMatchRegExps', () => {
 
 	it('should convert strings to RegExps-as-strings', () => {
 		const result = getExactMatchRegExps(['webpack']);
-		expect(result).toEqual([[expect.stringContaining('\\bwebpack'), 'webpack']]);
+		expect(result).toEqual([
+			[expect.stringContaining('\\bwebpack'), 'webpack'],
+		]);
 	});
 
 	it('returned RegExp should match exact term', () => {
@@ -203,7 +210,8 @@ tester.run('textlint-rule-terminology', rule, {
 			output: 'My JavaScript is good',
 			errors: [
 				{
-					message: 'Incorrect usage of the term: “Javascript”, use “JavaScript” instead',
+					message:
+						'Incorrect usage of the term: “Javascript”, use “JavaScript” instead',
 				},
 			],
 		},
@@ -213,7 +221,8 @@ tester.run('textlint-rule-terminology', rule, {
 			output: 'My **JavaScript** is good',
 			errors: [
 				{
-					message: 'Incorrect usage of the term: “Javascript”, use “JavaScript” instead',
+					message:
+						'Incorrect usage of the term: “Javascript”, use “JavaScript” instead',
 				},
 			],
 		},
@@ -223,10 +232,12 @@ tester.run('textlint-rule-terminology', rule, {
 			output: 'Write change logs about source maps',
 			errors: [
 				{
-					message: 'Incorrect usage of the term: “changelogs”, use “change logs” instead',
+					message:
+						'Incorrect usage of the term: “changelogs”, use “change logs” instead',
 				},
 				{
-					message: 'Incorrect usage of the term: “source-maps”, use “source maps” instead',
+					message:
+						'Incorrect usage of the term: “source-maps”, use “source maps” instead',
 				},
 			],
 		},

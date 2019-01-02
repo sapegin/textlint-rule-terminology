@@ -1,18 +1,16 @@
 # textlint-rule-terminology
 
-[![textlint fixable rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/)
-[![Build Status](https://travis-ci.org/sapegin/textlint-rule-terminology.svg)](https://travis-ci.org/sapegin/textlint-rule-terminology)
-[![npm](https://img.shields.io/npm/v/textlint-rule-terminology.svg)](https://www.npmjs.com/package/textlint-rule-terminology)
+[![textlint fixable rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Build Status](https://travis-ci.org/sapegin/textlint-rule-terminology.svg)](https://travis-ci.org/sapegin/textlint-rule-terminology) [![npm](https://img.shields.io/npm/v/textlint-rule-terminology.svg)](https://www.npmjs.com/package/textlint-rule-terminology)
 
 [Textlint](https://github.com/textlint/textlint) rule to check and fix terms, brands and technologies spelling in your tech writing in English.
 
 For example:
 
-* Javascript → JavaScript
-* NPM → npm
-* front-end → frontend
-* website → site
-* Internet → internet
+- Javascript → JavaScript
+- NPM → npm
+- front-end → frontend
+- website → site
+- Internet → internet
 
 (You can customize the rules as you wish.)
 
@@ -91,9 +89,9 @@ Oh my javascript!
 
 ## Other textlint rules
 
-* [textlint-rule-apostrophe](https://github.com/sapegin/textlint-rule-apostrophe) — correct apostrophe usage
-* [textlint-rule-diacritics](https://github.com/sapegin/textlint-rule-diacritics) — words with diacritics
-* [textlint-rule-stop-words](https://github.com/sapegin/textlint-rule-stop-words) — filler words, buzzwords and clichés
+- [textlint-rule-apostrophe](https://github.com/sapegin/textlint-rule-apostrophe) — correct apostrophe usage
+- [textlint-rule-diacritics](https://github.com/sapegin/textlint-rule-diacritics) — words with diacritics
+- [textlint-rule-stop-words](https://github.com/sapegin/textlint-rule-stop-words) — filler words, buzzwords and clichés
 
 ## Change log
 

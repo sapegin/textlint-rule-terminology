@@ -25,7 +25,7 @@ function reporter(context, options = {}) {
 	const { Syntax, RuleError, report, fixer, getSource } = context;
 	return {
 		[Syntax.Str](node) {
-			if (helper.isChildNode(node, opts.skip.map((rule) => Syntax[rule]))) {
+			if (helper.isChildNode(node, opts.skip.map(rule => Syntax[rule]))) {
 				return false;
 			}
 
@@ -33,7 +33,8 @@ function reporter(context, options = {}) {
 				const text = getSource(node);
 
 				let match;
-				while (match = regExp.exec(text)) { // eslint-disable-line no-cond-assign
+				// eslint-disable-next-line no-cond-assign
+				while ((match = regExp.exec(text))) {
 					const index = match.index;
 					const matched = match[0];
 					const rule = getRuleForMatch(rules, matched);
@@ -42,7 +43,8 @@ function reporter(context, options = {}) {
 
 					// Capitalize word in the beginning of a sentense if the original word was capitalized
 					const textBeforeMatch = text.substring(0, index);
-					const isSentenceStart = index === 0 || sentenceStartRegExp.test(textBeforeMatch);
+					const isSentenceStart =
+						index === 0 || sentenceStartRegExp.test(textBeforeMatch);
 					if (isSentenceStart && upperFirst(matched) === matched) {
 						replacement = upperFirst(replacement);
 					}
@@ -65,7 +67,9 @@ function reporter(context, options = {}) {
 }
 
 function getTerms(defaultTerms, terms, exclude) {
-	const defaults = defaultTerms ? loadJson(path.resolve(__dirname, 'terms.json')) : [];
+	const defaults = defaultTerms
+		? loadJson(path.resolve(__dirname, 'terms.json'))
+		: [];
 	const extras = typeof terms === 'string' ? loadJson(terms) : terms;
 	const listTerms = defaults.concat(extras);
 
@@ -83,28 +87,29 @@ function loadJson(filepath) {
 function readTermsFile(filepath) {
 	try {
 		return fs.readFileSync(filepath, 'utf8');
-	}
-	catch (err) {
+	} catch (err) {
 		if (err.code === 'ENOENT') {
 			throw new Error(`Terms file not found: ${filepath}`);
-		}
-		else {
+		} else {
 			throw err;
 		}
 	}
 }
 
 function getRegExp(variants) {
-	return new RegExp(`(?:^|[^-\\w])((?:${variants.join('|')})(?= |\\. |\\.$|$))`, 'ig');
+	return new RegExp(
+		`(?:^|[^-\\w])((?:${variants.join('|')})(?= |\\. |\\.$|$))`,
+		'ig'
+	);
 }
 
 // Make RegExps for exact match words
 function getExactMatchRegExps(terms) {
-	return terms.map(term => (
+	return terms.map(term =>
 		typeof term === 'string'
 			? [`\\b${term}\\b`, term] // Exact match of a word
 			: term
-	));
+	);
 }
 
 function getRuleForMatch(rules, match) {

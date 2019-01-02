@@ -35,14 +35,14 @@
     "terms"
   ],
   "devDependencies": {
-    "eslint": "^3.15.0",
-    "eslint-config-tamia": "^3.3.2",
-    "jest": "^21.0.1",
-    "textlint-tester": "^2.2.4"
+    "eslint": "^5.11.1",
+    "eslint-config-tamia": "^6.0.2",
+    "jest": "^23.6.0",
+    "textlint-tester": "^5.1.0"
   },
   "dependencies": {
     "lodash": "^4.17.11",
     "strip-json-comments": "^2.0.1",
-    "textlint-rule-helper": "^2.0.0"
+    "textlint-rule-helper": "^2.0.1"
   }
 }

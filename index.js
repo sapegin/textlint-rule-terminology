@@ -8,12 +8,13 @@ const DEFAULT_OPTIONS = {
 	terms: [],
 	skip: ['BlockQuote'],
 	defaultTerms: true,
+	exclude: [],
 };
 const sentenceStartRegExp = /\w+[.?!]\)? $/;
 
 function reporter(context, options = {}) {
 	const opts = Object.assign({}, DEFAULT_OPTIONS, options);
-	const terms = getTerms(opts.defaultTerms, opts.terms);
+	const terms = getTerms(opts.defaultTerms, opts.terms, opts.exclude);
 	const rules = getExactMatchRegExps(terms);
 
 	// Regexp for all possible mistakes
@@ -63,12 +64,17 @@ function reporter(context, options = {}) {
 	};
 }
 
-function getTerms(defaultTerms, terms) {
+function getTerms(defaultTerms, terms, exclude) {
 	const defaults = defaultTerms ? loadJson(path.resolve(__dirname, 'terms.json')) : [];
 	const extras = typeof terms === 'string' ? loadJson(terms) : terms;
-	return defaults.concat(extras);
-}
+	const listTerms = defaults.concat(extras);
 
+	if (Array.isArray(exclude)) {
+		return listTerms.filter(term => exclude.indexOf(term) === -1);
+	}
+
+	return listTerms;
+}
 function loadJson(filepath) {
 	const json = readTermsFile(path.resolve(filepath));
 	return JSON.parse(stripJsonComments(json));

@@ -200,7 +200,7 @@ tester.run('textlint-rule-terminology', rule, {
 		},
 		{
 			// Should not warn about file names
-			text: 'Changelog.md',
+			text: 'Filetype.md',
 		},
 	],
 	invalid: [
@@ -228,12 +228,12 @@ tester.run('textlint-rule-terminology', rule, {
 		},
 		{
 			// Several words, keep suffix
-			text: 'Write changelogs about source-maps',
-			output: 'Write change logs about source maps',
+			text: 'Write change logs about source-maps',
+			output: 'Write changelogs about source maps',
 			errors: [
 				{
 					message:
-						'Incorrect usage of the term: “changelogs”, use “change logs” instead',
+						'Incorrect usage of the term: “change logs”, use “changelogs” instead',
 				},
 				{
 					message:

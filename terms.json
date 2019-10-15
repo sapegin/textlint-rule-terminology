@@ -102,6 +102,7 @@
   ["auto[- ]fixing", "autofixing"],
   ["back[- ]end(\\w*)", "backend$1"],
   ["bug[- ]fix(es?)", "bugfix$1"],
+  ["change[- ]log(s?)", "changelog$1"],
   ["check[- ]box(es?)", "checkbox$1"],
   ["code[- ]base(es?)", "codebase$1"],
   ["co[- ]locate(d?)", "colocate$1"],
@@ -134,7 +135,6 @@
   ["wild[- ]card(s?)", "wildcard$1"],
 
   // Multiple words
-  ["change-?log(s?)", "change log$1"],
   ["css-?in-?js", "CSS in JS"],
   ["code-?review(s?)", "code review$1"],
   ["code-?splitting", "code splitting"],

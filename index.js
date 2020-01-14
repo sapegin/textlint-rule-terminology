@@ -25,7 +25,12 @@ function reporter(context, options = {}) {
 	const { Syntax, RuleError, report, fixer, getSource } = context;
 	return {
 		[Syntax.Str](node) {
-			if (helper.isChildNode(node, opts.skip.map(rule => Syntax[rule]))) {
+			if (
+				helper.isChildNode(
+					node,
+					opts.skip.map(rule => Syntax[rule])
+				)
+			) {
 				return false;
 			}
 

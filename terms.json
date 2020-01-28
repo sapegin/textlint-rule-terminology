@@ -177,6 +177,7 @@
 
   // Typos
   ["environemnt(s?)", "environment$1"],
+  ["flacky test(s?)", "flaky test$1"],
   ["pacakge(s?)", "package$1"],
   ["tilda", "tilde"],
   ["falsey", "falsy"]

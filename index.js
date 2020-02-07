@@ -1,8 +1,9 @@
+// @ts-check
 const fs = require('fs');
 const path = require('path');
 const stripJsonComments = require('strip-json-comments');
 const { RuleHelper } = require('textlint-rule-helper');
-const { find, upperFirst } = require('lodash');
+const { upperFirst } = require('lodash');
 
 const DEFAULT_OPTIONS = {
 	terms: [],
@@ -12,14 +13,18 @@ const DEFAULT_OPTIONS = {
 };
 const sentenceStartRegExp = /\w+[.?!]\)? $/;
 
-function reporter(context, options = {}) {
-	const opts = Object.assign({}, DEFAULT_OPTIONS, options);
-	const terms = getTerms(opts.defaultTerms, opts.terms, opts.exclude);
-	const rules = getExactMatchRegExps(terms);
+function reporter(context, opts = {}) {
+	const options = { ...DEFAULT_OPTIONS, ...opts };
+	const terms = getTerms(options.defaultTerms, options.terms, options.exclude);
 
-	// Regexp for all possible mistakes
-	const allMistakes = rules.map(rule => rule[0]);
-	const regExp = getRegExp(allMistakes);
+	// Match all words (plain strings) with a single regexp
+	const words = terms.filter(rule => typeof rule === 'string');
+	const exactWordRules = [[getMultipleWordRegExp(words), words]];
+
+	// Create a seprate regexp of each array rule ([pattern, replacement])
+	const advancedRules = terms.filter(rule => typeof rule !== 'string');
+
+	const rules = [...exactWordRules, ...advancedRules];
 
 	const helper = new RuleHelper(context);
 	const { Syntax, RuleError, report, fixer, getSource } = context;
@@ -28,7 +33,7 @@ function reporter(context, options = {}) {
 			if (
 				helper.isChildNode(
 					node,
-					opts.skip.map(rule => Syntax[rule])
+					options.skip.map(rule => Syntax[rule])
 				)
 			) {
 				return false;
@@ -37,33 +42,37 @@ function reporter(context, options = {}) {
 			return new Promise(resolve => {
 				const text = getSource(node);
 
-				let match;
-				// eslint-disable-next-line no-cond-assign
-				while ((match = regExp.exec(text))) {
-					const index = match.index;
-					const matched = match[0];
-					const rule = getRuleForMatch(rules, matched);
+				rules.forEach(([pattern, replacements]) => {
+					const regExp =
+						typeof pattern === 'string' ? getAdvancedRegExp(pattern) : pattern;
 
-					let replacement = matched.replace(new RegExp(rule[0], 'i'), rule[1]);
+					let match;
+					// eslint-disable-next-line no-cond-assign
+					while ((match = regExp.exec(text))) {
+						const index = match.index;
+						const matched = match[0];
 
-					// Capitalize word in the beginning of a sentense if the original word was capitalized
-					const textBeforeMatch = text.substring(0, index);
-					const isSentenceStart =
-						index === 0 || sentenceStartRegExp.test(textBeforeMatch);
-					if (isSentenceStart && upperFirst(matched) === matched) {
-						replacement = upperFirst(replacement);
+						let replacement = getReplacement(pattern, replacements, matched);
+
+						// Capitalize word in the beginning of a sentense if the original word was capitalized
+						const textBeforeMatch = text.substring(0, index);
+						const isSentenceStart =
+							index === 0 || sentenceStartRegExp.test(textBeforeMatch);
+						if (isSentenceStart && upperFirst(matched) === matched) {
+							replacement = upperFirst(replacement);
+						}
+
+						// Skip correct spelling
+						if (matched === replacement) {
+							continue;
+						}
+
+						const range = [index, index + matched.length];
+						const fix = fixer.replaceTextRange(range, replacement);
+						const message = `Incorrect usage of the term: “${matched.trim()}”, use “${replacement.trim()}” instead`;
+						report(node, new RuleError(message, { index, fix }));
 					}
-
-					// Skip correct spelling
-					if (matched === replacement) {
-						continue;
-					}
-
-					const range = [index, index + matched.length];
-					const fix = fixer.replaceTextRange(range, replacement);
-					const message = `Incorrect usage of the term: “${matched.trim()}”, use “${replacement.trim()}” instead`;
-					report(node, new RuleError(message, { index, fix }));
-				}
+				});
 
 				resolve();
 			});
@@ -71,6 +80,11 @@ function reporter(context, options = {}) {
 	};
 }
 
+/**
+ * @param {boolean} defaultTerms
+ * @param {string | Array} terms
+ * @param {Array} [exclude]
+ */
 function getTerms(defaultTerms, terms, exclude) {
 	const defaults = defaultTerms
 		? loadJson(path.resolve(__dirname, 'terms.json'))
@@ -84,11 +98,18 @@ function getTerms(defaultTerms, terms, exclude) {
 
 	return listTerms;
 }
+
+/**
+ * @param {string} filepath
+ */
 function loadJson(filepath) {
 	const json = readTermsFile(path.resolve(filepath));
 	return JSON.parse(stripJsonComments(json));
 }
 
+/**
+ * @param {string} filepath
+ */
 function readTermsFile(filepath) {
 	try {
 		return fs.readFileSync(filepath, 'utf8');
@@ -101,24 +122,69 @@ function readTermsFile(filepath) {
 	}
 }
 
-function getRegExp(variants) {
+/**
+ * Match exact word in the middle of the text
+ * @param {string} pattern
+ */
+function getExactMatchRegExp(pattern) {
 	return new RegExp(
-		`(?:^|[^-\\w])((?:${variants.join('|')})(?= |\\. |\\.$|$))`,
+		// 1. Beginning of the string, or any character that isn't "-" or alphanumeric
+		// 2. Exact match of the pattern
+		// 3. Space, ". ", "." at the end of the string, end of the string
+		`(?<=^|[^-\\w])\\b${pattern}\\b(?= |\\. |\\.$|$)`,
 		'ig'
 	);
 }
 
-// Make RegExps for exact match words
-function getExactMatchRegExps(terms) {
-	return terms.map(term =>
-		typeof term === 'string'
-			? [`\\b${term}\\b`, term] // Exact match of a word
-			: term
-	);
+/**
+ * Match any of given words exactly in the middle of the text
+ * @param {string[]} words
+ */
+function getMultipleWordRegExp(words) {
+	return getExactMatchRegExp(`(?:${words.join('|')})`);
 }
 
-function getRuleForMatch(rules, match) {
-	return find(rules, rule => new RegExp(rule[0], 'i').test(match));
+/**
+ * Match pattern on word boundaries in the middle of the text unless the pattern
+ * has look behinds
+ * @param {string} pattern
+ */
+function getAdvancedRegExp(pattern) {
+	if (
+		// Look behind: (?<=...) and (?<!...)
+		pattern.startsWith('(?<') ||
+		// Positive look ahead: (?=...)
+		pattern.includes('(?=') ||
+		// Negative look ahead: (?!...)
+		pattern.includes('(?!')
+	) {
+		return new RegExp(pattern, 'ig');
+	}
+	return getExactMatchRegExp(pattern);
+}
+
+/**
+ * @param {string} pattern
+ * @param {string[]} replacements
+ * @param {string} matched
+ */
+function getReplacement(pattern, replacements, matched) {
+	if (Array.isArray(replacements)) {
+		return findWord(replacements, matched);
+	}
+
+	return `xyz ${matched} xyz`
+		.replace(new RegExp(pattern, 'i'), replacements)
+		.slice(4, -4);
+}
+
+/**
+ * @param {string[]} items
+ * @param {string} match
+ */
+function findWord(items, match) {
+	const lowerCaseMatch = match.toLowerCase();
+	return items.find(word => word.toLowerCase() === lowerCaseMatch);
 }
 
 module.exports = {
@@ -126,8 +192,10 @@ module.exports = {
 	fixer: reporter,
 	test: {
 		getTerms,
-		getRegExp,
-		getExactMatchRegExps,
-		getRuleForMatch,
+		findWord,
+		getMultipleWordRegExp,
+		getExactMatchRegExp,
+		getAdvancedRegExp,
+		getReplacement,
 	},
 };

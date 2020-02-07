@@ -3,9 +3,11 @@ const rule = require('./index');
 
 const {
 	getTerms,
-	getRegExp,
-	getExactMatchRegExps,
-	getRuleForMatch,
+	findWord,
+	getMultipleWordRegExp,
+	getExactMatchRegExp,
+	getAdvancedRegExp,
+	getReplacement,
 } = rule.test;
 const tester = new TextLintTester();
 
@@ -46,112 +48,139 @@ describe('getTerms', () => {
 	});
 });
 
-describe('getRegExp', () => {
+describe('findWord', () => {
+	it('should find a word in an array ignoring the case', () => {
+		const result = findWord(['pasta', 'piZZa', 'coffee'], 'Pizza');
+		expect(result).toBe('piZZa');
+	});
+});
+
+describe('getMultipleWordRegExp', () => {
 	const variants = ['JavaScript', 'webpack'];
+
 	it('should match a pattern as a full word', () => {
-		const result = getRegExp(variants).exec('My JavaScript is good');
-		expect(result).toBeTruthy();
-		expect(result[1]).toBe('JavaScript');
+		const result = getMultipleWordRegExp(variants).exec(
+			'My JavaScript is good'
+		);
+		expect(result[0]).toBe('JavaScript');
 	});
 
 	it('should not match a pattern in the middle of a word', () => {
-		const result = getRegExp(variants).exec('Foo superwebpacky bar');
+		const result = getMultipleWordRegExp(variants).exec(
+			'Foo superwebpacky bar'
+		);
 		expect(result).toBeFalsy();
 	});
 
 	it('should not match a pattern at the beginning of a string', () => {
-		const result = getRegExp(variants).exec('webpack bar');
+		const result = getMultipleWordRegExp(variants).exec('webpack bar');
 		expect(result).toBeTruthy();
-		expect(result[1]).toBe('webpack');
+		expect(result[0]).toBe('webpack');
 	});
 
 	it('should not match a pattern at the end of a string', () => {
-		const result = getRegExp(variants).exec('foo webpack');
+		const result = getMultipleWordRegExp(variants).exec('foo webpack');
 		expect(result).toBeTruthy();
-		expect(result[1]).toBe('webpack');
+		expect(result[0]).toBe('webpack');
 	});
 
 	it('should not match a pattern at the beginning of a word with a hyphen', () => {
-		const result = getRegExp(variants).exec('Foo webpack-ish bar');
+		const result = getMultipleWordRegExp(variants).exec('Foo webpack-ish bar');
 		expect(result).toBeFalsy();
 	});
 
 	it('should not match a pattern in at the end of a word with a hyphen', () => {
-		const result = getRegExp(variants).exec('Foo uber-webpack bar');
+		const result = getMultipleWordRegExp(variants).exec('Foo uber-webpack bar');
 		expect(result).toBeFalsy();
 	});
 
 	it('should match a pattern at the end of a sentence', () => {
-		const result = getRegExp(variants).exec('My javascript.');
+		const result = getMultipleWordRegExp(variants).exec('My javascript.');
 		expect(result).toBeTruthy();
-		expect(result[1]).toBe('javascript');
+		expect(result[0]).toBe('javascript');
 	});
 
 	it('should match a pattern at the end of a sentence in the middle of a string', () => {
-		const result = getRegExp(variants).exec('My javascript. My webpack.');
+		const result = getMultipleWordRegExp(variants).exec(
+			'My javascript. My webpack.'
+		);
 		expect(result).toBeTruthy();
-		expect(result[1]).toBe('javascript');
+		expect(result[0]).toBe('javascript');
 	});
 
 	it('should not match a pattern in as a part of a file name', () => {
-		const result = getRegExp(variants).exec('javascript.md');
+		const result = getMultipleWordRegExp(variants).exec('javascript.md');
 		expect(result).toBeFalsy();
 	});
 
 	it('should match a pattern regardless of its case', () => {
-		const result = getRegExp(variants).exec('Javascript is good');
+		const result = getMultipleWordRegExp(variants).exec('Javascript is good');
 		expect(result).toBeTruthy();
-		expect(result[1]).toBe('Javascript');
+		expect(result[0]).toBe('Javascript');
 	});
 
 	it('should match several variants', () => {
-		const regexp = getRegExp(variants);
+		const regexp = getMultipleWordRegExp(variants);
 		const text = 'My JavaScript is better than your webpack';
 		const result1 = regexp.exec(text);
 		expect(result1).toBeTruthy();
-		expect(result1[1]).toBe('JavaScript');
+		expect(result1[0]).toBe('JavaScript');
 		const result2 = regexp.exec(text);
 		expect(result2).toBeTruthy();
-		expect(result2[1]).toBe('webpack');
+		expect(result2[0]).toBe('webpack');
 	});
 });
 
-describe('getExactMatchRegExps', () => {
-	it('should return RegExps as is', () => {
-		const result = getExactMatchRegExps([/JavaScript/, /webpack/]);
-		expect(result).toEqual([/JavaScript/, /webpack/]);
-	});
-
-	it('should convert strings to RegExps-as-strings', () => {
-		const result = getExactMatchRegExps(['webpack']);
-		expect(result).toEqual([
-			[expect.stringContaining('\\bwebpack'), 'webpack'],
-		]);
-	});
-
+describe('getExactMatchRegExp', () => {
 	it('returned RegExp should match exact term', () => {
-		const result = getExactMatchRegExps(['webpack']);
-		const regexp = new RegExp(result[0][0]);
-		const term = result[0][1];
-		expect(regexp.test(term)).toBeTruthy();
-		expect(regexp.test(`foo${term}`)).toBeFalsy();
-		expect(regexp.test(`${term}foo`)).toBeFalsy();
+		const regexp = getExactMatchRegExp('webpack');
+		expect(regexp.test('Webpack')).toBeTruthy();
 	});
 
-	it('returned RegExp should not match term as a part of another word', () => {
-		const result = getExactMatchRegExps(['webpack']);
-		const regexp = new RegExp(result[0][0]);
-		const term = result[0][1];
-		expect(regexp.test(`foo${term}`)).toBeFalsy();
-		expect(regexp.test(`${term}foo`)).toBeFalsy();
+	it('returned RegExp should not match in the middle of the word', () => {
+		const regexp = getExactMatchRegExp('webpack');
+		expect(regexp.test(`FooWebpack`)).toBeFalsy();
+		expect(regexp.test(`WebpackFoo`)).toBeFalsy();
+		expect(regexp.test(`FooWebpackFoo`)).toBeFalsy();
 	});
 });
 
-describe('getRuleForMatch', () => {
-	it('should return a rule that matches a term', () => {
-		const result = getRuleForMatch([['webpack'], ['JavaScript']], 'javascript');
-		expect(result).toBeTruthy();
-		expect(result).toEqual(['JavaScript']);
+describe('getAdvancedRegExp', () => {
+	it('should return an exact match regexp', () => {
+		const regexp = getAdvancedRegExp('bug[- ]fix(es)?');
+		expect(regexp.test('bug-fix')).toBeTruthy();
+	});
+
+	it('should return regexp as is if it has look behinds', () => {
+		const regexp = getAdvancedRegExp('(?<=(?:\\w+[^.?!])? )base64\\b');
+		expect(regexp.test('use Base64')).toBeTruthy();
+	});
+
+	it('should return regexp as is if it has positive look ahead', () => {
+		const regexp = getAdvancedRegExp('base64(?= \\w)');
+		expect(regexp.test('Base64 foo')).toBeTruthy();
+	});
+
+	it('should return regexp as is if it has negative look ahead', () => {
+		const regexp = getAdvancedRegExp('base64(?! \\w)');
+		expect(regexp.test('Base64')).toBeTruthy();
+		expect(regexp.test('Base64 foo')).toBeFalsy();
+	});
+});
+
+describe('getReplacement', () => {
+	it('should return a replacement from an array of words', () => {
+		const result = getReplacement(
+			'JavaScript',
+			['npm', 'JavaScript', 'webpack'],
+			'Javascript'
+		);
+		expect(result).toEqual('JavaScript');
+	});
+
+	it('should return a replacement for a pattern', () => {
+		const result = getReplacement('bug[- ]fix(es?)', 'bugfix$1', 'bug-fixes');
+		expect(result).toEqual('bugfixes');
 	});
 });
 
@@ -202,16 +231,52 @@ tester.run('textlint-rule-terminology', rule, {
 			// Should not warn about file names
 			text: 'Filetype.md',
 		},
+		{
+			text: 'I think Internet Explorer 6 is the best browser!',
+		},
 	],
 	invalid: [
 		{
 			// One word
-			text: 'My Javascript is good',
-			output: 'My JavaScript is good',
+			text: 'My Javascript is good too',
+			output: 'My JavaScript is good too',
 			errors: [
 				{
 					message:
 						'Incorrect usage of the term: “Javascript”, use “JavaScript” instead',
+				},
+			],
+		},
+		{
+			// One word
+			text: 'My Internet is good',
+			output: 'My internet is good',
+			errors: [
+				{
+					message:
+						'Incorrect usage of the term: “Internet”, use “internet” instead',
+				},
+			],
+		},
+		{
+			// Singular
+			text: 'My bug-fix is good',
+			output: 'My bugfix is good',
+			errors: [
+				{
+					message:
+						'Incorrect usage of the term: “bug-fix”, use “bugfix” instead',
+				},
+			],
+		},
+		{
+			// Plural
+			text: 'My bug-fixes are good',
+			output: 'My bugfixes are good',
+			errors: [
+				{
+					message:
+						'Incorrect usage of the term: “bug-fixes”, use “bugfixes” instead',
 				},
 			],
 		},

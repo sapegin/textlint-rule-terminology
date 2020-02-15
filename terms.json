@@ -160,6 +160,7 @@
   ["client ?side", "client-side"],
   ["command ?line", "command-line"],
   ["end ?to ?end", "end-to-end"],
+  ["end[- ]?2[- ]?end", "end-to-end"],
   ["error ?prone", "error-prone"],
   ["higher ?order", "higher-order"],
   ["key[/ ]?value", "key-value"],

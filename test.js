@@ -308,3 +308,39 @@ tester.run('textlint-rule-terminology', rule, {
 		},
 	],
 });
+
+tester.run(
+	'textlint-rule-terminology',
+	{
+		rules: [
+			{
+				ruleId: 'terminology',
+				rule,
+				options: {
+					defaultTerms: true,
+					terms: ['wordpress'],
+				},
+			},
+		],
+	},
+	{
+		valid: [
+			{
+				text: 'This wordpress word is OK',
+			},
+		],
+		invalid: [
+			{
+				// Replace default
+				text: 'My WordPress is good too',
+				output: 'My wordpress is good too',
+				errors: [
+					{
+						message:
+							'Incorrect usage of the term: “WordPress”, use “wordpress” instead',
+					},
+				],
+			},
+		],
+	}
+);

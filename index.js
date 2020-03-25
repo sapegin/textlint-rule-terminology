@@ -90,12 +90,13 @@ function getTerms(defaultTerms, terms, exclude) {
 		? loadJson(path.resolve(__dirname, 'terms.json'))
 		: [];
 	const extras = typeof terms === 'string' ? loadJson(terms) : terms;
-	const listTerms = defaults.concat(extras);
 
+	const listTerms = [...(Array.isArray(extras) ? extras : []), ...defaults];
+
+	// Filter on all terms
 	if (Array.isArray(exclude)) {
-		return listTerms.filter(term => exclude.indexOf(term) === -1);
+		return listTerms.filter(term => !exclude.includes(term));
 	}
-
 	return listTerms;
 }
 

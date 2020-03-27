@@ -90,7 +90,7 @@ function getTerms(defaultTerms, terms, exclude) {
 		? loadJson(path.resolve(__dirname, 'terms.json'))
 		: [];
 	const extras = typeof terms === 'string' ? loadJson(terms) : terms;
-
+	// Order matters, the first term to match is used. We prioritize user 'extras' before defaults
 	const listTerms = [...(Array.isArray(extras) ? extras : []), ...defaults];
 
 	// Filter on all terms

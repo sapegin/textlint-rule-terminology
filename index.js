@@ -21,7 +21,7 @@ function reporter(context, opts = {}) {
 	const words = terms.filter(rule => typeof rule === 'string');
 	const exactWordRules = [[getMultipleWordRegExp(words), words]];
 
-	// Create a seprate regexp of each array rule ([pattern, replacement])
+	// Create a separate regexp of each array rule ([pattern, replacement])
 	const advancedRules = terms.filter(rule => typeof rule !== 'string');
 
 	const rules = [...exactWordRules, ...advancedRules];
@@ -95,7 +95,12 @@ function getTerms(defaultTerms, terms, exclude) {
 
 	// Filter on all terms
 	if (Array.isArray(exclude)) {
-		return listTerms.filter(term => !exclude.includes(term));
+		return listTerms.filter(term => {
+			if (Array.isArray(term)) {
+				return !exclude.includes(term[0]);
+			}
+			return !exclude.includes(term);
+		});
 	}
 	return listTerms;
 }

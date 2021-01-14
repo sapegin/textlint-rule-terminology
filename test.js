@@ -45,6 +45,17 @@ describe('getTerms', () => {
 		expect(result).not.toContain('CSS');
 		expect(result).not.toContain('coffee');
 		expect(result).toContain('mocha');
+		expect(
+			result.some(term => Array.isArray(term) && term[1] === 'Node.js')
+		).toBe(true);
+	});
+
+	it('should remove the excluded terms (defined as Array)', () => {
+		const result = getTerms(true, [], ['Node(?:js)?']);
+		expect(result).toBeTruthy();
+		expect(
+			result.some(term => Array.isArray(term) && term[1] === 'Node.js')
+		).toBe(false);
 	});
 });
 

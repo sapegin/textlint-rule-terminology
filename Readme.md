@@ -36,7 +36,7 @@ You can configure the rule in your `.textlintrc`:
 {
   "rules": {
     "terminology": {
-      // Load default terms (see terms.json in the repository)
+      // Load default terms (see terms.jsonc in the repository)
       "defaultTerms": true,
       // Syntax elements to skip. Overrides the default
       "skip": ["Blockquote"],
@@ -61,7 +61,7 @@ You can configure the rule in your `.textlintrc`:
         ["(\\w+[^.?!]\\)? )internet", "$internet"]
       ],
       // OR load terms from a file
-      "terms": "~/terms.json",
+      "terms": "~/terms.jsonc",
       // OR load terms from npm
       "terms": "@johnsmith/terms",
       // Excludes terms
@@ -73,7 +73,7 @@ You can configure the rule in your `.textlintrc`:
 }
 ```
 
-Check [the default terminology](./terms.json). Read more about [configuring textlint](https://github.com/textlint/textlint/blob/master/docs/configuring.md).
+Check [the default terminology](./terms.jsonc). Read more about [configuring textlint](https://github.com/textlint/textlint/blob/master/docs/configuring.md).
 
 ## Tips & tricks
 

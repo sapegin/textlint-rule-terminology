@@ -87,7 +87,7 @@ function reporter(context, opts = {}) {
  */
 function getTerms(defaultTerms, terms, exclude) {
 	const defaults = defaultTerms
-		? loadJson(path.resolve(__dirname, 'terms.json'))
+		? loadJson(path.resolve(__dirname, 'terms.jsonc'))
 		: [];
 	const extras = typeof terms === 'string' ? loadJson(terms) : terms;
 	// Order matters, the first term to match is used. We prioritize user 'extras' before defaults

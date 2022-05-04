@@ -1,6 +1,6 @@
 # textlint-rule-terminology
 
-[![textlint fixable rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Build Status](https://travis-ci.org/sapegin/textlint-rule-terminology.svg)](https://travis-ci.org/sapegin/textlint-rule-terminology) [![npm](https://img.shields.io/npm/v/textlint-rule-terminology.svg)](https://www.npmjs.com/package/textlint-rule-terminology)
+[![textlint fixable rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![npm](https://img.shields.io/npm/v/textlint-rule-terminology.svg)](https://www.npmjs.com/package/textlint-rule-terminology) [![Node.js CI status](https://github.com/sapegin/textlint-rule-terminology/workflows/Node.js%20CI/badge.svg)](https://github.com/sapegin/textlint-rule-terminology/actions)
 
 [Textlint](https://github.com/textlint/textlint) rule to check and fix terms, brands and technologies spelling in your tech writing in English.
 

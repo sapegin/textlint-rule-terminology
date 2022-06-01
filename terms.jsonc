@@ -62,7 +62,7 @@
   ["API['’]?s", "APIs"],
   "CSS",
   "GIF",
-  "HTML",
+  ["(?<!\\.)html\\b", "HTML"],
   "HTTPS",
   "IoT",
   "I/O",

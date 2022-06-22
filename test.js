@@ -119,6 +119,19 @@ describe('getMultipleWordRegExp', () => {
 		expect(result[0]).toBe('javascript');
 	});
 
+	it.each([
+		['Bad Javascript. Is it bad?'],
+		['Bad Javascript, is it bad?'],
+		['Bad Javascript; is it bad?'],
+		['Bad (Javascript) is it bad?'],
+		['Bad "Javascript" is it bad?'],
+		["Bad 'Javascript' is it bad?"],
+		['Bad "Javascript", is it bad?'],
+	])('should match a pattern regardless of punctuation: %s', string => {
+		const result = getMultipleWordRegExp(variants).exec(string);
+		expect(result).toBeTruthy();
+	});
+
 	it('should not match a pattern in as a part of a file name', () => {
 		const result = getMultipleWordRegExp(variants).exec('javascript.md');
 		expect(result).toBeFalsy();
@@ -146,6 +159,19 @@ describe('getExactMatchRegExp', () => {
 	it('returned RegExp should match exact term', () => {
 		const regexp = getExactMatchRegExp('webpack');
 		expect(regexp.test('Webpack')).toBeTruthy();
+	});
+
+	it.each([
+		['Javascript.'],
+		['Javascript,'],
+		['Javascript;'],
+		['(Javascript)'],
+		['"Javascript"'],
+		["'Javascript'"],
+		['"Javascript",'],
+	])('should match a pattern regardless of punctuation: %s', string => {
+		const regexp = getExactMatchRegExp('javascript');
+		expect(regexp.test(string)).toBeTruthy();
 	});
 
 	it('returned RegExp should not match in the middle of the word', () => {

@@ -39,7 +39,7 @@
   "YouTube",
   ["Common[ .]js", "CommonJS"],
   ["JSDocs?", "JSDoc"],
-	["Node[ .]js", "Node.js"],
+  ["Node[ .]js", "Node.js"],
   ["React[ .]js", "React"],
   ["SauceLabs", "Sauce Labs"],
   ["StackOverflow", "Stack Overflow"],

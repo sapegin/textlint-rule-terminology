@@ -51,7 +51,7 @@ describe('getTerms', () => {
 	});
 
 	it('should remove the excluded terms (defined as Array)', () => {
-		const result = getTerms(true, [], ['Node(?:js)?']);
+		const result = getTerms(true, [], ['Node[ .]js?']);
 		expect(result).toBeTruthy();
 		expect(
 			result.some(term => Array.isArray(term) && term[1] === 'Node.js')

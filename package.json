@@ -4,7 +4,7 @@
   "description": "TextLint rule to check correct terms spelling",
   "author": {
     "name": "Artem Sapegin",
-    "url": "http://sapegin.me"
+    "url": "https://sapegin.me"
   },
   "homepage": "https://github.com/sapegin/textlint-rule-terminology",
   "repository": "sapegin/textlint-rule-terminology",

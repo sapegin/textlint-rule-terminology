@@ -157,7 +157,7 @@
   ["web-?page(s)?", "web page$1"],
 
   // Hyphenated
-  ["built ?in", "built-in"],
+  ["built ?in(s)?", "built-in$1"],
   ["client ?side", "client-side"],
   ["command ?line", "command-line"],
   ["end ?to ?end", "end-to-end"],
@@ -165,6 +165,7 @@
   ["error ?prone", "error-prone"],
   ["higher ?order", "higher-order"],
   ["key[/ ]?value", "key-value"],
+  ["one ?liner(s)?", "one-liner$1"],
   ["server ?side", "server-side"],
   ["two ?steps? authentication", "two-step authentication"],
   ["two ?steps? verification", "two-step verification"],

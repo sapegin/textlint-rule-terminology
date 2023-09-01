@@ -10,7 +10,7 @@
   "repository": "sapegin/textlint-rule-terminology",
   "license": "MIT",
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "main": "index.js",
   "files": [

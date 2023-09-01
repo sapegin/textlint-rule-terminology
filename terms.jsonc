@@ -79,6 +79,7 @@
   ["URL['’]?s", "URLs"],
   ["an URL", "a URL"],
   ["wi[- ]?fi", "Wi-Fi"],
+  "ZIP",
 
   // Names
   "McKenzie",

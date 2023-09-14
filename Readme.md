@@ -99,7 +99,7 @@ The change log can be found on the [Releases page](https://github.com/sapegin/te
 
 ## Contributing
 
-Everyone is welcome to contribute. Please take a moment to review the [contributing guidelines](Contributing.md).
+Bug fixes are welcome, but not new features. Please take a moment to review the [contributing guidelines](Contributing.md).
 
 ## Sponsoring
 
@@ -111,4 +111,5 @@ This software has been developed with lots of coffee, buy me one more cup to kee
 
 [Artem Sapegin](https://sapegin.me) and [contributors](https://github.com/sapegin/textlint-rule-terminology/graphs/contributors).
 
-MIT License, see the included [License.md](License.md) file.
+MIT License, see the included [License.md](License.md) file. Also see the [project status](https://github.com/sapegin/textlint-rule-terminology/discussions/65).
+

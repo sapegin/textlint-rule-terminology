@@ -139,7 +139,7 @@ function getExactMatchRegExp(pattern) {
 		// 2. Exact match of the pattern
 		// 3. Space, punctuation + space, punctuation + punctuation, or punctuation at the end of the string, end of the string
 		`(?<=^|[^-\\w])\\b${pattern}\\b(?= |${punctuation} |${punctuation}${punctuation}|${punctuation}$|$)`,
-		'ig'
+		'igm'
 	);
 }
 

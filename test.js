@@ -274,6 +274,17 @@ tester.run('textlint-rule-terminology', rule, {
 	],
 	invalid: [
 		{
+			// https://github.com/sapegin/textlint-rule-terminology/discussions/71
+			text: `A Github\n`,
+			output: `A GitHub\n`,
+			errors: [
+				{
+					message:
+						'Incorrect usage of the term: “Github”, use “GitHub” instead',
+				},
+			],
+		},
+		{
 			// One word
 			text: 'My Javascript is good too',
 			output: 'My JavaScript is good too',

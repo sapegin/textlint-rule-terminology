@@ -101,6 +101,7 @@
   ["web[- ]?site(s)?", "site$1"],
 
   // Single word
+  ["anti[- ]pattern(s)?", "antipattern$1"],
   ["auto[- ]complete", "autocomplete"],
   ["auto[- ]format", "autoformat"],
   ["auto[- ]fix", "autofix"],

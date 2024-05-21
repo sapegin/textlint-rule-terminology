@@ -105,6 +105,13 @@ describe('getMultipleWordRegExp', () => {
 		expect(result).toBeFalsy();
 	});
 
+	it('should not match a pattern in at the middle of a word with hyphens', () => {
+		const result = getMultipleWordRegExp(variants).exec(
+			'Foo uber-webpack-ish bar'
+		);
+		expect(result).toBeFalsy();
+	});
+
 	it('should match a pattern at the end of a sentence', () => {
 		const result = getMultipleWordRegExp(variants).exec('My javascript.');
 		expect(result).toBeTruthy();
@@ -202,6 +209,14 @@ describe('getAdvancedRegExp', () => {
 		const regexp = getAdvancedRegExp('base64(?! \\w)');
 		expect(regexp.test('Base64')).toBeTruthy();
 		expect(regexp.test('Base64 foo')).toBeFalsy();
+	});
+
+	it('should not match words inside filenames', () => {
+		const regexp = getAdvancedRegExp('(?<![\\.-])css\\b');
+		expect(regexp.test('typings.for.css.modules.loader')).toBeFalsy();
+		expect(regexp.test('typings-for-css-modules-loader')).toBeFalsy();
+		expect(regexp.test('typings_for_css_modules_loader')).toBeFalsy();
+		expect(regexp.test('typings for css modules loader')).toBeTruthy();
 	});
 });
 

@@ -161,7 +161,7 @@
   // Hyphenated
   ["built ?in(s)?", "built-in$1"],
   ["client ?side", "client-side"],
-  ["command ?line tool", "command-line tool"],
+  ["command ?line tool(s)?", "command-line tool$1"],
   ["end ?to ?end", "end-to-end"],
   ["end[- ]?2[- ]?end", "end-to-end"],
   ["error ?prone", "error-prone"],

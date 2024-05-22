@@ -117,6 +117,7 @@
   ["file[- ]name(s)?", "filename$1"],
   ["front[- ]end(\\w*)", "frontend$1"],
   ["hack[- ]a[- ]thon(s)?", "hackathon$1"],
+  ["hard[- ]cod(e|ed|ing)", "hardcod$1"],
   ["host[- ]name(s)?", "hostname$1"],
   ["hot[- ]key(s)?", "hotkey$1"],
   ["life[- ]cycle", "lifecycle"],

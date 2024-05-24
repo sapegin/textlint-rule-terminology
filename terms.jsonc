@@ -111,7 +111,7 @@
   ["change[- ]log(s)?", "changelog$1"],
   ["check[- ]box(es)?", "checkbox$1"],
   ["code[- ]base(es)?", "codebase$1"],
-  ["co[- ]locat(ion|ing|ed?)", "colocate$1"],
+  ["co[- ]locat(ion|ing|e|ed)", "colocate$1"],
   ["end[- ]point(s)?", "endpoint$1"],
   ["e[- ]mail(s)?", "email$1"],
   ["file[- ]name(s)?", "filename$1"],

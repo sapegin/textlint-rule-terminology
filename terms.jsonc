@@ -127,6 +127,7 @@
   ["meta[- ]data", "metadata"],
   ["micro[- ]service(s)?", "microservice$1"],
   ["name[- ]space(s)?", "namespace$1"],
+  ["over[- ]engineer(ing|ed)", "overengineer$1"],
   ["pre[- ]condition(s)?", "precondition$1"],
   ["pre[- ]defined", "predefined"],
   ["pre[- ]release(s)?", "prerelease$1"],

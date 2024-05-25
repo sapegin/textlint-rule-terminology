@@ -155,6 +155,7 @@
   ["micro-?frontend(s)?", "micro frontend$1"],
   ["open-?source(ed?)", "open source$1"],
   ["regexp?(s)?", "regular expression$1"],
+  ["spell-?check(er|ing)?", "spell check$1"],
   ["style-?guide(s)?", "style guide$1"],
   ["tree-?shaking", "tree shaking"],
   ["source-?map(s)?", "source map$1"],

@@ -145,6 +145,7 @@
   ["wild[- ]card(s)?", "wildcard$1"],
 
   // Multiple words
+  ["array item(s)?", "array element$1"],
   ["css-?in-?js", "CSS in JS"],
   ["code-?review(s)?", "code review$1"],
   ["code-?splitting", "code splitting"],

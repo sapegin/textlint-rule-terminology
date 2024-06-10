@@ -94,6 +94,7 @@
   ["he or she", "they"],
   ["he/she", "they"],
   ["\\(s\\)he", "they"],
+  ["indexes\\b", "indices"],
   ["repo\\b", "repository"],
   ["smartphone(s)?", "mobile phone$1"],
   // https://stackoverflow.com/questions/44934828/is-it-spread-syntax-or-the-spread-operator

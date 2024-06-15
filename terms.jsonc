@@ -91,6 +91,7 @@
   ["backwards compatible", "backward compatible"],
   ["build system(s)?", "build tool$1"],
   ["CLI tool(s)?", "command-line tool$1"],
+  ["function argument(s)?", "function parameter$1"],
   ["he or she", "they"],
   ["he/she", "they"],
   ["\\(s\\)he", "they"],

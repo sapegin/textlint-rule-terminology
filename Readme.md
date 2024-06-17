@@ -66,7 +66,9 @@ You can configure the rule in your `.textlintrc`:
       "terms": "@johnsmith/terms",
       // Excludes terms
       "exclude": [
-        "CSS"
+        "CSS",
+        "bug[- ]fix(es)?",
+        "walk-through"
       ]
     }
   }

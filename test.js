@@ -133,6 +133,8 @@ describe('getMultipleWordRegExp', () => {
 		['Bad (Javascript) is it bad?'],
 		['Bad "Javascript" is it bad?'],
 		["Bad 'Javascript' is it bad?"],
+		['Bad “Javascript” is it bad?'],
+		['Bad ‘Javascript’ is it bad?'],
 		['Bad "Javascript", is it bad?'],
 		['Bad Javascript: is this true?'],
 		['Bad Javascript!'],

@@ -133,7 +133,7 @@ function readTermsFile(filepath) {
  * @param {string} pattern
  */
 function getExactMatchRegExp(pattern) {
-	const punctuation = '[\\.,;\'")]';
+	const punctuation = '[\\.,;:!?\'")]';
 	return new RegExp(
 		// 1. Beginning of the string, or any character that isn't "-" or alphanumeric
 		// 2. Exact match of the pattern

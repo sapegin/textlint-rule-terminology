@@ -134,6 +134,9 @@ describe('getMultipleWordRegExp', () => {
 		['Bad "Javascript" is it bad?'],
 		["Bad 'Javascript' is it bad?"],
 		['Bad "Javascript", is it bad?'],
+		['Bad Javascript: is this true?'],
+		['Bad Javascript!'],
+		['Bad Javascript?'],
 	])('should match a pattern regardless of punctuation: %s', string => {
 		const result = getMultipleWordRegExp(variants).exec(string);
 		expect(result).toBeTruthy();

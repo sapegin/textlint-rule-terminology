@@ -125,7 +125,7 @@
   "SSH",
   ["wi[- ]?fi", "Wi-Fi"],
   "XML",
-  "YAML",
+  ["(?<![\\.-])yaml\\b", "YAML"],
   "ZIP",
 
   // Names

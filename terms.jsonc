@@ -18,7 +18,6 @@
   "ESLint",
   "Git",
   "GitHub",
-  "Google",
   "GraphiQL",
   "GraphQL",
   "Homebrew",
@@ -54,7 +53,6 @@
   "watchOS",
   "WebAssembly",
   "WebStorm",
-  "Windows",
   "WordPress",
   "Xcode",
   "Yarn",
@@ -70,7 +68,7 @@
   ["GitHub[ -]?Actions", "GitHub Actions"],
   ["IP[ -]?v6", "IPv6"],
   ["JSDocs?", "JSDoc"],
-  ["Local[ -]?Storage", "LocalStorage"],
+  ["Local[ -]?Storage", "localStorage"],
   ["Next[ .]?js", "Next.js"],
   ["Node[ .]?js", "Node.js"],
   ["React[ .]?js", "React"],
@@ -78,7 +76,6 @@
   ["SauceLabs", "Sauce Labs"],
   ["StackOverflow", "Stack Overflow"],
   ["styled ?components", "styled-components"],
-  ["HTTP[ /]2(?:\\.0)?", "HTTP/2"],
   ["OS X", "macOS"],
   ["Mac ?OS", "macOS"],
   ["Visual ?Studio ?Code", "Visual Studio Code"],
@@ -103,8 +100,9 @@
 	"DOM",
   ["(?<![\\.-])gif\\b", "GIF"],
   ["(?<![\\.-])html\\b", "HTML"],
-  ["HTTP(?!:)", "HTTP"],
-  ["HTTPS(?!:)", "HTTPS"],
+  ["HTTP[ /]2(?:\\.0)?", "HTTP/2"],
+  ["\bHTTP(?!:)", "HTTP"],
+  ["\bHTTPS(?!:)", "HTTPS"],
   "IDE",
   "IoT",
   "I/O",
@@ -121,7 +119,6 @@
 	"URL",
   ["URL['’]?s", "URLs"],
   ["an URL", "a URL"],
-  "REST",
   "RESTful",
   "RSS",
   "SDK",
@@ -151,7 +148,7 @@
   ["smartphone(s)?", "mobile phone$1"],
   // https://stackoverflow.com/questions/44934828/is-it-spread-syntax-or-the-spread-operator
   ["spread operator", "spread syntax"],
-  ["todo(s)?", "todo$1"], // Don't allow TODO
+  ["todo(s)?(?=[ ,.])", "todo$1"], // Don't allow TODO
   ["web[- ]?site(s)?", "site$1"],
 
   // Single word

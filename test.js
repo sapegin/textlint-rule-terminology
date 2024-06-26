@@ -291,6 +291,10 @@ tester.run('textlint-rule-terminology', rule, {
 		{
 			text: 'I think Internet Explorer 6 is the best browser!',
 		},
+		{
+			// Should ignore `http` in the middle of a word
+			text: 'We should all use XMLHttpRequest everywhere',
+		},
 	],
 	invalid: [
 		{

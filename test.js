@@ -295,6 +295,9 @@ tester.run('textlint-rule-terminology', rule, {
 			// Should ignore `http` in the middle of a word
 			text: 'We should all use XMLHttpRequest everywhere',
 		},
+		{
+			text: 'foo.yaml',
+		},
 	],
 	invalid: [
 		{
@@ -375,6 +378,16 @@ tester.run('textlint-rule-terminology', rule, {
 				{
 					message:
 						'Incorrect usage of the term: “source-maps”, use “source maps” instead',
+				},
+			],
+		},
+		{
+			// yaml -> YAML
+			text: 'yaml files',
+			output: 'YAML files',
+			errors: [
+				{
+					message: 'Incorrect usage of the term: “yaml”, use “YAML” instead',
 				},
 			],
 		},

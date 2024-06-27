@@ -143,15 +143,15 @@ Check out [the default replacements](./terms.jsonc).
 
 If you don’t like any of [the default replacements](./terms.jsonc), you can _exclude_ them. For example, to exclude these entries:
 
-```json
+```js
 // terms.jsonc
 [
-  "JavaScript",
-  "API",
-  ["V[ -]?S[ -]?Code", "Visual Studio Code"],
-  ["walk-through", "walkthrough"],
-  ["(?<![\\.-])css\\b", "CSS"]
-]
+  'JavaScript',
+  'API',
+  ['V[ -]?S[ -]?Code', 'Visual Studio Code'],
+  ['walk-through', 'walkthrough'],
+  ['(?<![\\.-])css\\b', 'CSS']
+];
 ```
 
 You need to copy the exact entry (for array, just the first element) to the `exclude` option of the `terminology` rule in your Textlint config:

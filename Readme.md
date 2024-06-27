@@ -36,10 +36,56 @@ You can configure the rule in your `.textlintrc`:
 {
   "rules": {
     "terminology": {
-      // Load default terms (see terms.jsonc in the repository)
-      "defaultTerms": true,
-      // Syntax elements to skip. Overrides the default
-      "skip": ["Blockquote"],
+      // Your options here
+    }
+  }
+}
+```
+
+Read more about [configuring textlint](https://github.com/textlint/textlint/blob/master/docs/configuring.md).
+
+### `defaultTerms` (default: `true`)
+
+Whether to load the [default replacements (terms)](./terms.jsonc). Example:
+
+```js
+{
+  "rules": {
+    "terminology": {
+      // Don't load default replacements
+      "defaultTerms": false,
+    }
+  }
+}
+```
+
+### `skip` (default `['BlockQuote']`)
+
+Syntax elements to skip. By default skips blockquotes. Example:
+
+```js
+{
+  "rules": {
+    "terminology": {
+      // Don't check terms inside links
+      "skip": ["Link"],
+    }
+  }
+}
+```
+
+See [all available element types](https://github.com/textlint/textlint/blob/master/packages/%40textlint/ast-node-types/src/ASTNodeTypes.ts).
+
+### `terms`
+
+Additional replacements.
+
+Could be an array of replacements:
+
+```js
+{
+  "rules": {
+    "terminology": {
       // List of terms
       "terms": [
         // Exact spelling including the case
@@ -60,22 +106,75 @@ You can configure the rule in your `.textlintrc`:
         ["(\\w+[^.?!]\\)? )webpack", "$1webpack"],
         ["(\\w+[^.?!]\\)? )internet", "$internet"]
       ],
-      // OR load terms from a file
-      "terms": "~/terms.jsonc",
-      // OR load terms from npm
-      "terms": "@johnsmith/terms",
-      // Excludes terms
-      "exclude": [
-        "CSS",
-        "bug[- ]fix(es)?",
-        "walk-through"
-      ]
     }
   }
 }
 ```
 
-Check [the default terminology](./terms.jsonc). Read more about [configuring textlint](https://github.com/textlint/textlint/blob/master/docs/configuring.md).
+A path to a JSON file:
+
+```js
+{
+  "rules": {
+    "terminology": {
+      // Load terms from a file
+      "terms": "~/terms.jsonc",
+    }
+  }
+}
+```
+
+Or an npm module:
+
+```js
+{
+  "rules": {
+    "terminology": {
+      // Load terms from npm
+      "terms": "@chucknorris/terms",
+    }
+  }
+}
+```
+
+Check out [the default replacements](./terms.jsonc).
+
+### `exclude`
+
+If you don’t like any of [the default replacements](./terms.jsonc), you can _exclude_ them. For example, to exclude these entries:
+
+```json
+// terms.jsonc
+[
+  "JavaScript",
+  "API",
+  ["V[ -]?S[ -]?Code", "Visual Studio Code"],
+  ["walk-through", "walkthrough"],
+  ["(?<![\\.-])css\\b", "CSS"]
+]
+```
+
+You need to copy the exact entry (for array, just the first element) to the `exclude` option of the `terminology` rule in your Textlint config:
+
+```js
+{
+  "rules": {
+    "terminology": {
+      // Excludes terms
+      "exclude": [
+        // Simple replacements, the casing should match terms.jsonc entry
+        "JavaScript",
+        "API",
+        // Complex replacements, put only the first array element exactly as
+        // in terms.jsonc
+        "V[ -]?S[ -]?Code",
+        "walk-through",
+        "(?<![\\.-])css\\b"
+      ]
+    }
+  }
+}
+```
 
 ## Tips & tricks
 

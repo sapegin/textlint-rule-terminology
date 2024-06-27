@@ -192,6 +192,7 @@ Oh my javascript!
 
 - [textlint-rule-apostrophe](https://github.com/sapegin/textlint-rule-apostrophe) — correct apostrophe usage
 - [textlint-rule-diacritics](https://github.com/sapegin/textlint-rule-diacritics) — words with diacritics
+- [textlint-rule-quotes](https://github.com/sapegin/textlint-rule-quotes) — correct quotes usage
 - [textlint-rule-stop-words](https://github.com/sapegin/textlint-rule-stop-words) — filler words, buzzwords and clichés
 
 ## Change log

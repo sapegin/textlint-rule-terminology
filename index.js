@@ -70,7 +70,7 @@ function reporter(context, opts = {}) {
 
 						const range = [index, index + matched.length];
 						const fix = fixer.replaceTextRange(range, replacement);
-						const message = `Incorrect usage of the term: “${matched.trim()}”, use “${replacement.trim()}” instead`;
+						const message = `Incorrect term: “${matched.trim()}”, use “${replacement.trim()}” instead`;
 						report(node, new RuleError(message, { index, fix }));
 					}
 				});

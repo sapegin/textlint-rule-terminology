@@ -280,8 +280,7 @@ tester.run('textlint-rule-terminology', rule, {
 			output: `A GitHub\n`,
 			errors: [
 				{
-					message:
-						'Incorrect usage of the term: “Github”, use “GitHub” instead',
+					message: 'Incorrect term: “Github”, use “GitHub” instead',
 				},
 			],
 		},
@@ -291,8 +290,7 @@ tester.run('textlint-rule-terminology', rule, {
 			output: 'My JavaScript is good too',
 			errors: [
 				{
-					message:
-						'Incorrect usage of the term: “Javascript”, use “JavaScript” instead',
+					message: 'Incorrect term: “Javascript”, use “JavaScript” instead',
 				},
 			],
 		},
@@ -302,8 +300,7 @@ tester.run('textlint-rule-terminology', rule, {
 			output: 'My internet is good',
 			errors: [
 				{
-					message:
-						'Incorrect usage of the term: “Internet”, use “internet” instead',
+					message: 'Incorrect term: “Internet”, use “internet” instead',
 				},
 			],
 		},
@@ -313,8 +310,7 @@ tester.run('textlint-rule-terminology', rule, {
 			output: 'My bugfix is good',
 			errors: [
 				{
-					message:
-						'Incorrect usage of the term: “bug-fix”, use “bugfix” instead',
+					message: 'Incorrect term: “bug-fix”, use “bugfix” instead',
 				},
 			],
 		},
@@ -324,8 +320,7 @@ tester.run('textlint-rule-terminology', rule, {
 			output: 'My bugfixes are good',
 			errors: [
 				{
-					message:
-						'Incorrect usage of the term: “bug-fixes”, use “bugfixes” instead',
+					message: 'Incorrect term: “bug-fixes”, use “bugfixes” instead',
 				},
 			],
 		},
@@ -335,8 +330,7 @@ tester.run('textlint-rule-terminology', rule, {
 			output: 'My **JavaScript** is good',
 			errors: [
 				{
-					message:
-						'Incorrect usage of the term: “Javascript”, use “JavaScript” instead',
+					message: 'Incorrect term: “Javascript”, use “JavaScript” instead',
 				},
 			],
 		},
@@ -346,12 +340,10 @@ tester.run('textlint-rule-terminology', rule, {
 			output: 'Write changelogs about source maps',
 			errors: [
 				{
-					message:
-						'Incorrect usage of the term: “change logs”, use “changelogs” instead',
+					message: 'Incorrect term: “change logs”, use “changelogs” instead',
 				},
 				{
-					message:
-						'Incorrect usage of the term: “source-maps”, use “source maps” instead',
+					message: 'Incorrect term: “source-maps”, use “source maps” instead',
 				},
 			],
 		},
@@ -361,7 +353,7 @@ tester.run('textlint-rule-terminology', rule, {
 			output: 'YAML files',
 			errors: [
 				{
-					message: 'Incorrect usage of the term: “yaml”, use “YAML” instead',
+					message: 'Incorrect term: “yaml”, use “YAML” instead',
 				},
 			],
 		},
@@ -395,8 +387,7 @@ tester.run(
 				output: 'My wordpress is good too',
 				errors: [
 					{
-						message:
-							'Incorrect usage of the term: “WordPress”, use “wordpress” instead',
+						message: 'Incorrect term: “WordPress”, use “wordpress” instead',
 					},
 				],
 			},

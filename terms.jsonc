@@ -149,7 +149,7 @@
   ["smartphone(s)?", "mobile phone$1"],
   // https://stackoverflow.com/questions/44934828/is-it-spread-syntax-or-the-spread-operator
   ["spread operator", "spread syntax"],
-  ["todo(s)?(?=[ ,.])", "todo$1"], // Don't allow TODO
+  ["to-?do(s)?(?=[ ,.])", "todo$1"], // Don't allow TODO
   ["web[- ]?site(s)?", "site$1"],
 
   // Single word

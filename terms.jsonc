@@ -251,6 +251,7 @@
   ["one ?liner(s)?", "one-liner$1"],
   ["retr[yi]ability", "retry-ability"],
   ["server ?side", "server-side"],
+  ["trade ?off(s)?", "trade-off$1"],
   ["two ?steps? authentication", "two-step authentication"],
   ["two ?steps? verification", "two-step verification"],
   ["2 ?steps? authentication", "two-step authentication"],

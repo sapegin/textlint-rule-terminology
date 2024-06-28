@@ -84,9 +84,24 @@
   ["a npm", "an npm"],
 
   // ECMAScript
+  ["ES6", "ECMAScript 2015"],
+  ["ES7", "ECMAScript 2016"],
+  ["ES2015", "ECMAScript 2015"],
+  ["ES2016", "ECMAScript 2016"],
+  ["ES2017", "ECMAScript 2017"],
+  ["ES2018", "ECMAScript 2018"],
+  ["ES2019", "ECMAScript 2019"],
+  ["ES2020", "ECMAScript 2020"],
+  ["ES2021", "ECMAScript 2021"],
+  ["ES2022", "ECMAScript 2022"],
+  ["ES2023", "ECMAScript 2023"],
+  ["ES2024", "ECMAScript 2024"],
+  ["ES2025", "ECMAScript 2025"],
+  ["ES2026", "ECMAScript 2026"],
+  ["ES2027", "ECMAScript 2027"],
+  ["ES2028", "ECMAScript 2028"],
+  ["ES2029", "ECMAScript 2029"],
   "ECMAScript",
-  ["ES2015", "ES6"],
-  ["ES7", "ES2016"],
 
   // Abbreviations
   "3D",

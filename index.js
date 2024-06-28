@@ -12,6 +12,7 @@ const DEFAULT_OPTIONS = {
 	exclude: [],
 };
 const sentenceStartRegExp = /\w+[.?!]\)? $/;
+const punctuation = '[\\.,;:!?\'"’”)]';
 
 function reporter(context, opts = {}) {
 	const options = { ...DEFAULT_OPTIONS, ...opts };
@@ -54,7 +55,7 @@ function reporter(context, opts = {}) {
 
 						let replacement = getReplacement(pattern, replacements, matched);
 
-						// Capitalize word in the beginning of a sentense if the original word was capitalized
+						// Capitalize word in the beginning of a sentence if the original word was capitalized
 						const textBeforeMatch = text.substring(0, index);
 						const isSentenceStart =
 							index === 0 || sentenceStartRegExp.test(textBeforeMatch);
@@ -90,7 +91,8 @@ function getTerms(defaultTerms, terms, exclude) {
 		? loadJson(path.resolve(__dirname, 'terms.jsonc'))
 		: [];
 	const extras = typeof terms === 'string' ? loadJson(terms) : terms;
-	// Order matters, the first term to match is used. We prioritize user 'extras' before defaults
+	// Order matters, the first term to match is used. We prioritize user
+	// 'extras' before defaults
 	const listTerms = [...(Array.isArray(extras) ? extras : []), ...defaults];
 
 	// Filter on all terms
@@ -133,12 +135,16 @@ function readTermsFile(filepath) {
  * @param {string} pattern
  */
 function getExactMatchRegExp(pattern) {
-	const punctuation = '[\\.,;:!?\'"’”)]';
 	return new RegExp(
-		// 1. Beginning of the string, or any character that isn't "-" or alphanumeric
-		// 2. Exact match of the pattern
-		// 3. Space, punctuation + space, punctuation + punctuation, or punctuation at the end of the string, end of the string
-		`(?<=^|[^-\\w])\\b${pattern}\\b(?= |${punctuation} |${punctuation}${punctuation}|${punctuation}$|$)`,
+		// 1. Beginning of the string, or any character that isn't "-"
+		//    or alphanumeric
+		// 2. Not a dot "." (to make it ignore file extensions)
+		// 3. Word boundary
+		// 4. Exact match of the pattern
+		// 5. Word boundary
+		// 6. Space, punctuation + space, punctuation + punctuation,
+		//    or punctuation at the end of the string, end of the string
+		`(?<=^|[^-\\w])(?<!\\.)\\b${pattern}\\b(?= |${punctuation} |${punctuation}${punctuation}|${punctuation}$|$)`,
 		'igm'
 	);
 }
@@ -153,7 +159,7 @@ function getMultipleWordRegExp(words) {
 
 /**
  * Match pattern on word boundaries in the middle of the text unless the pattern
- * has look behinds
+ * has look behinds or look aheads
  * @param {string} pattern
  */
 function getAdvancedRegExp(pattern) {

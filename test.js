@@ -243,61 +243,35 @@ describe('getReplacement', () => {
 
 tester.run('textlint-rule-terminology', rule, {
 	valid: [
-		{
-			text: 'My JavaScript is good',
-		},
-		{
-			// Should skip code examples
-			text: 'My `javascript` is good',
-		},
-		{
-			// Should skip URLs
-			text: 'My [code](http://example.com/javascript) is good',
-		},
-		{
-			// Should keep a capital letter at the beginning of a sentense
-			text: 'Webpack is good',
-		},
+		{ text: 'My JavaScript is good' },
+		// Should skip code examples
+		{ text: 'My `javascript` is good' },
+		// Should skip URLs
+		{ text: 'My [code](http://example.com/javascript) is good' },
+		// Should keep a capital letter at the beginning of a sentense
+		{ text: 'Webpack is good' },
 		// Should not warn when incorrect term is used as a part of another word
-		{
-			text: 'Your javascriptish code',
-		},
-		{
-			text: 'javascriptish',
-		},
-		{
-			text: 'Your uberjavascript code',
-		},
-		{
-			text: 'uberjavascript',
-		},
+		{ text: 'Your javascriptish code' },
+		{ text: 'javascriptish' },
+		{ text: 'Your uberjavascript code' },
+		{ text: 'uberjavascript' },
 		// Should not warn when incorrect term is used as a part of a hyphenates word
-		{
-			text: 'Install javascript-some-plugin here',
-		},
-		{
-			text: 'javascript-some-plugin',
-		},
-		{
-			text: 'Install some-plugin-javascript here',
-		},
-		{
-			text: 'some-plugin-javascript',
-		},
-		{
-			// Should not warn about file names
-			text: 'Filetype.md',
-		},
-		{
-			text: 'I think Internet Explorer 6 is the best browser!',
-		},
-		{
-			// Should ignore `http` in the middle of a word
-			text: 'We should all use XMLHttpRequest everywhere',
-		},
-		{
-			text: 'foo.yaml',
-		},
+		{ text: 'Install javascript-some-plugin here' },
+		{ text: 'javascript-some-plugin' },
+		{ text: 'Install some-plugin-javascript here' },
+		{ text: 'some-plugin-javascript' },
+		{ text: 'I think Internet Explorer 6 is the best browser!' },
+		// Should ignore `http` in the middle of a word
+		{ text: 'We should all use XMLHttpRequest everywhere' },
+		// Filenames with .yaml extensions are valid
+		{ text: 'foo.yaml' },
+		// Filenames with `yaml` inside are valid
+		{ text: 'foo-yaml.txt' },
+		{ text: 'foo_yaml.txt' },
+		{ text: 'foo-yaml-bar.txt' },
+		{ text: 'foo_yaml_bar.txt' },
+		{ text: 'fooyaml.txt' },
+		{ text: 'fooyaml.txt' },
 	],
 	invalid: [
 		{

@@ -152,6 +152,7 @@
   "McConnell",
 
   // Words and phrases
+  ["authentificat(ion|e|ed)", "authenticat$1"],
   "ID", // http://stackoverflow.com/questions/1151338/id-or-id-on-user-interface
   ["id['’]?s", "IDs"],
   ["backwards compatible", "backward compatible"],

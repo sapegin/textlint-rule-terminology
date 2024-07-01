@@ -174,7 +174,7 @@
   // Single word
   ["anti[- ]pattern(s)?", "antipattern$1"],
   ["auto[- ]complete", "autocomplete"],
-  ["auto[- ]format(ting|ted)?", "autoformat$1"],
+  ["auto[- ]format(ting|ted|ter)?", "autoformat$1"],
   ["auto[- ]fix", "autofix"],
   ["auto[- ]fixing", "autofixing"],
   ["back[- ]end(\\w*)", "backend$1"],

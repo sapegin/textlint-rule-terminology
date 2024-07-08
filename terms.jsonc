@@ -272,6 +272,13 @@
   ["(?<=(?:\\w+[^.?!])? )webpack\\b", "webpack"],
   ["(?<=(?:\\w+[^.?!])? )npm\\b", "npm"],
 
+  // Cases
+  ["kebab[- ]?case", "kebab-case"],
+  ["camel[- ]?case", "camelCase"],
+  ["pascal[- ]?case", "PascalCase"],
+  ["snake[- ]?case", "snake_case"],
+  ["screaming[- ]?snake[- ]?case", "SCREAMING_SNAKE_CASE"],
+
   // Typos
   ["environemnt(s)?", "environment$1"],
   ["flacky test(s)?", "flaky test$1"],

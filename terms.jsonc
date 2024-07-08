@@ -282,6 +282,7 @@
   // Typos
   ["environemnt(s)?", "environment$1"],
   ["flacky test(s)?", "flaky test$1"],
+  ["flackyness", "flakiness"],
   ["pacakge(s)?", "package$1"],
   ["tilda", "tilde"],
   ["falsey", "falsy"]

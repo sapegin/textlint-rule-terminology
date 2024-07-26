@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import stripJsonComments from 'strip-json-comments';
 import { RuleHelper } from 'textlint-rule-helper';
-import { upperFirst } from 'lodash';
+import upperFirst from 'lodash/upperFirst.js';
 import type { TxtNode, TxtNodeType } from '@textlint/ast-node-types';
 import type {
 	TextlintFixableRuleModule,

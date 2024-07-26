@@ -15,7 +15,7 @@
 	"type": "module",
 	"exports": "./out/index.js",
 	"files": [
-		"out",
+		"out/*.js",
 		"terms.jsonc"
 	],
 	"scripts": {
@@ -42,6 +42,7 @@
 	"devDependencies": {
 		"@textlint/ast-node-types": "^14.0.4",
 		"@textlint/types": "^14.0.4",
+		"@types/lodash": "^4.17.7",
 		"eslint": "^9.7.0",
 		"eslint-config-tamia": "^9.1.8",
 		"husky": "^9.1.2",
@@ -52,7 +53,6 @@
 		"vitest": "^2.0.4"
 	},
 	"dependencies": {
-		"@types/lodash": "^4.17.7",
 		"lodash": "^4.17.21",
 		"strip-json-comments": "^5.0.1",
 		"textlint-rule-helper": "^2.3.1"

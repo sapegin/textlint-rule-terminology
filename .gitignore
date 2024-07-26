@@ -12,3 +12,4 @@ node_modules/
 .vscode/
 yarn.lock
 .eslintcache
+out/

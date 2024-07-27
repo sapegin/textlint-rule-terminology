@@ -259,6 +259,7 @@
   ["off ?by ?one", "off-by-one"],
   ["one ?liner(s)?", "one-liner$1"],
   ["retr[yi]ability", "retry-ability"],
+  ["self ?documenting", "self-documenting"],
   ["server ?side", "server-side"],
   ["trade ?off(s)?", "trade-off$1"],
   ["two ?steps? authentication", "two-step authentication"],

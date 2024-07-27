@@ -1,68 +1,68 @@
 {
-	"name": "textlint-rule-terminology",
-	"version": "0.0.0-development",
-	"description": "TextLint rule to check correct terms spelling",
-	"author": {
-		"name": "Artem Sapegin",
-		"url": "https://sapegin.me"
-	},
-	"homepage": "https://github.com/sapegin/textlint-rule-terminology",
-	"repository": "sapegin/textlint-rule-terminology",
-	"license": "MIT",
-	"engines": {
-		"node": ">=20"
-	},
-	"type": "module",
-	"exports": "./out/index.js",
-	"files": [
-		"out/*.js",
-		"terms.jsonc"
-	],
-	"scripts": {
-		"pretest": "npm run lint",
-		"test": "npm run test:vitest",
-		"posttest": "npm run format",
-		"lint": "eslint . --cache --fix",
-		"test:vitest": "vitest run",
-		"test:watch": "vitest",
-		"build": "tsc",
-		"format": "prettier --write \"**/*.{ts,js,md}\"",
-		"prepublish": "npm run build",
-		"prepare": "husky"
-	},
-	"keywords": [
-		"textlintrule",
-		"textlint",
-		"rule",
-		"misspelling",
-		"proofreading",
-		"terminology",
-		"terms"
-	],
-	"devDependencies": {
-		"@textlint/ast-node-types": "^14.0.4",
-		"@textlint/types": "^14.0.4",
-		"@types/lodash": "^4.17.7",
-		"eslint": "^9.7.0",
-		"eslint-config-tamia": "^9.1.8",
-		"husky": "^9.1.2",
-		"lint-staged": "^15.2.7",
-		"prettier": "^3.3.3",
-		"textlint-tester": "^14.0.4",
-		"typescript": "^5.5.4",
-		"vitest": "^2.0.4"
-	},
-	"dependencies": {
-		"lodash": "^4.17.21",
-		"strip-json-comments": "^5.0.1",
-		"textlint-rule-helper": "^2.3.1"
-	},
-	"lint-staged": {
-		"*.{ts,js,md}": [
-			"prettier --write"
-		],
-		"*.{ts,js}": [
-			"eslint --fix"
-		]
-	}
+  "name": "textlint-rule-terminology",
+  "version": "0.0.0-development",
+  "description": "TextLint rule to check correct terms spelling",
+  "author": {
+    "name": "Artem Sapegin",
+    "url": "https://sapegin.me"
+  },
+  "homepage": "https://github.com/sapegin/textlint-rule-terminology",
+  "repository": "sapegin/textlint-rule-terminology",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "exports": "./out/index.js",
+  "files": [
+    "out/*.js",
+    "terms.jsonc"
+  ],
+  "scripts": {
+    "pretest": "npm run lint",
+    "test": "npm run test:vitest",
+    "posttest": "npm run format",
+    "lint": "eslint . --cache --fix",
+    "test:vitest": "vitest run",
+    "test:watch": "vitest",
+    "build": "tsc",
+    "format": "prettier --write \"**/*.{ts,js,mjs,cjs,json,jsonc,md}\"",
+    "prepublish": "npm run build",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "textlintrule",
+    "textlint",
+    "rule",
+    "misspelling",
+    "proofreading",
+    "terminology",
+    "terms"
+  ],
+  "devDependencies": {
+    "@textlint/ast-node-types": "^14.0.4",
+    "@textlint/types": "^14.0.4",
+    "@types/lodash": "^4.17.7",
+    "eslint": "^9.7.0",
+    "eslint-config-tamia": "^9.1.8",
+    "husky": "^9.1.2",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.3",
+    "textlint-tester": "^14.0.4",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "strip-json-comments": "^5.0.1",
+    "textlint-rule-helper": "^2.3.1"
+  },
+  "lint-staged": {
+    "*.{ts,js,mjs,cjs,json,jsonc,md}": [
+      "prettier --write"
+    ],
+    "*.{ts,js,mjs,cjs}": [
+      "eslint --fix"
+    ]
+  }
 }

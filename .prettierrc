@@ -1,14 +1,19 @@
 {
-	"singleQuote": true,
-	"trailingComma": "es5",
-	"overrides": [
-		{
-			"files": "*.md",
-			"options": {
-				"printWidth": 70,
-				"trailingComma": "none",
-				"proseWrap": "never"
-			}
-		}
-	]
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": "*.jsonc",
+      "options": {
+        "trailingComma": "none"
+      }
+    },
+    {
+      "files": "*.md",
+      "options": {
+        "printWidth": 70,
+        "trailingComma": "none",
+        "proseWrap": "never"
+      }
+    }
+  ]
 }

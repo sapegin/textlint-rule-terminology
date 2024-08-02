@@ -37,7 +37,7 @@ const punctuation = String.raw`[\.,;:!?'"’”)]`;
 
 function reporter(
   context: TextlintRuleContext,
-  userOptions: Partial<Options> = {}
+  userOptions: Partial<Options> = {},
 ) {
   const options = { ...DEFAULT_OPTIONS, ...userOptions };
   const terms = getTerms(options.defaultTerms, options.terms, options.exclude);
@@ -48,7 +48,7 @@ function reporter(
 
   // Create a separate regexp of each array rule ([pattern, replacement])
   const advancedRules: Tuple[] = terms.filter(
-    (rule) => typeof rule !== 'string'
+    (rule) => typeof rule !== 'string',
   );
 
   const rules = [...exactWordRules, ...advancedRules];
@@ -62,7 +62,7 @@ function reporter(
           helper.isChildNode(
             // @ts-expect-error: Who the fuck knows what you want here ;-/
             node,
-            options.skip.map((rule) => Syntax[rule])
+            options.skip.map((rule) => Syntax[rule]),
           )
         ) {
           return resolve();
@@ -73,7 +73,7 @@ function reporter(
         for (const [pattern, replacements] of rules) {
           const regExp = new RegExp(
             typeof pattern === 'string' ? getAdvancedRegExp(pattern) : pattern,
-            'igm'
+            'igm',
           );
 
           let match;
@@ -102,7 +102,7 @@ function reporter(
 
             const fix = fixer.replaceTextRange(
               [index, index + matched.length],
-              replacement
+              replacement,
             );
             const message = `Incorrect term: “${matched.trim()}”, use “${replacement.trim()}” instead`;
             report(node, new RuleError(message, { index, fix }));
@@ -118,7 +118,7 @@ function reporter(
 export function getTerms(
   defaultTerms: boolean,
   terms: string | Term[],
-  exclude: string[]
+  exclude: string[],
 ) {
   const defaults = defaultTerms ? loadJson('../terms.jsonc') : [];
   const extras = typeof terms === 'string' ? loadJson(terms) : terms;
@@ -188,7 +188,7 @@ export function getAdvancedRegExp(pattern: string) {
 export function getReplacement(
   pattern: string,
   replacements: string | string[],
-  matched: string
+  matched: string,
 ) {
   if (Array.isArray(replacements)) {
     return findWord(replacements, matched);

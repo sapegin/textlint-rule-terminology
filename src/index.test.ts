@@ -46,7 +46,7 @@ describe('getTerms', () => {
     expect(result).not.toContain('coffee');
     expect(result).toContain('mocha');
     expect(
-      result.some((term) => Array.isArray(term) && term[1] === 'Node.js')
+      result.some((term) => Array.isArray(term) && term[1] === 'Node.js'),
     ).toBe(true);
   });
 
@@ -54,7 +54,7 @@ describe('getTerms', () => {
     const result = getTerms(true, [], ['Node[ .]?js']);
     expect(result).toBeTruthy();
     expect(
-      result.some((term) => Array.isArray(term) && term[1] === 'Node.js')
+      result.some((term) => Array.isArray(term) && term[1] === 'Node.js'),
     ).toBe(false);
   });
 });
@@ -71,21 +71,21 @@ describe('getMultipleWordRegExp', () => {
 
   test('should match a pattern as a full word', () => {
     const result = new RegExp(getMultipleWordRegExp(variants), 'igm').exec(
-      'My JavaScript is good'
+      'My JavaScript is good',
     );
     expect(result?.[0]).toBe('JavaScript');
   });
 
   test('should not match a pattern in the middle of a word', () => {
     const result = new RegExp(getMultipleWordRegExp(variants), 'igm').exec(
-      'Foo superwebpacky bar'
+      'Foo superwebpacky bar',
     );
     expect(result).toBeFalsy();
   });
 
   test('should not match a pattern at the beginning of a string', () => {
     const result = new RegExp(getMultipleWordRegExp(variants), 'igm').exec(
-      'webpack bar'
+      'webpack bar',
     );
     expect(result).toBeTruthy();
     expect(result?.[0]).toBe('webpack');
@@ -93,7 +93,7 @@ describe('getMultipleWordRegExp', () => {
 
   test('should not match a pattern at the end of a string', () => {
     const result = new RegExp(getMultipleWordRegExp(variants), 'igm').exec(
-      'foo webpack'
+      'foo webpack',
     );
     expect(result).toBeTruthy();
     expect(result?.[0]).toBe('webpack');
@@ -101,28 +101,28 @@ describe('getMultipleWordRegExp', () => {
 
   test('should not match a pattern at the beginning of a word with a hyphen', () => {
     const result = new RegExp(getMultipleWordRegExp(variants), 'igm').exec(
-      'Foo webpack-ish bar'
+      'Foo webpack-ish bar',
     );
     expect(result).toBeFalsy();
   });
 
   test('should not match a pattern in at the end of a word with a hyphen', () => {
     const result = new RegExp(getMultipleWordRegExp(variants), 'igm').exec(
-      'Foo uber-webpack bar'
+      'Foo uber-webpack bar',
     );
     expect(result).toBeFalsy();
   });
 
   test('should not match a pattern in at the middle of a word with hyphens', () => {
     const result = new RegExp(getMultipleWordRegExp(variants), 'igm').exec(
-      'Foo uber-webpack-ish bar'
+      'Foo uber-webpack-ish bar',
     );
     expect(result).toBeFalsy();
   });
 
   test('should match a pattern at the end of a sentence', () => {
     const result = new RegExp(getMultipleWordRegExp(variants), 'igm').exec(
-      'My javascript.'
+      'My javascript.',
     );
     expect(result).toBeTruthy();
     expect(result?.[0]).toBe('javascript');
@@ -130,7 +130,7 @@ describe('getMultipleWordRegExp', () => {
 
   test('should match a pattern at the end of a sentence in the middle of a string', () => {
     const result = new RegExp(getMultipleWordRegExp(variants), 'igm').exec(
-      'My javascript. My webpack.'
+      'My javascript. My webpack.',
     );
     expect(result).toBeTruthy();
     expect(result?.[0]).toBe('javascript');
@@ -151,21 +151,21 @@ describe('getMultipleWordRegExp', () => {
     ['Bad Javascript?'],
   ])('should match a pattern regardless of punctuation: %s', (string) => {
     const result = new RegExp(getMultipleWordRegExp(variants), 'igm').exec(
-      string
+      string,
     );
     expect(result).toBeTruthy();
   });
 
   test('should not match a pattern in as a part of a file name', () => {
     const result = new RegExp(getMultipleWordRegExp(variants), 'igm').exec(
-      'javascript.md'
+      'javascript.md',
     );
     expect(result).toBeFalsy();
   });
 
   test('should match a pattern regardless of its case', () => {
     const result = new RegExp(getMultipleWordRegExp(variants), 'igm').exec(
-      'Javascript is good'
+      'Javascript is good',
     );
     expect(result).toBeTruthy();
     expect(result?.[0]).toBe('Javascript');
@@ -219,7 +219,7 @@ describe('getAdvancedRegExp', () => {
   test('should return regexp as is if it has look behinds', () => {
     const regexp = new RegExp(
       getAdvancedRegExp(String.raw`(?<=(?:\w+[^.?!])? )base64\b`),
-      'igm'
+      'igm',
     );
     expect(regexp.test('use Base64')).toBeTruthy();
   });
@@ -227,7 +227,7 @@ describe('getAdvancedRegExp', () => {
   test('should return regexp as is if it has positive look ahead', () => {
     const regexp = new RegExp(
       getAdvancedRegExp(String.raw`base64(?= \w)`),
-      'igm'
+      'igm',
     );
     expect(regexp.test('Base64 foo')).toBeTruthy();
   });
@@ -235,7 +235,7 @@ describe('getAdvancedRegExp', () => {
   test('should return regexp as is if it has negative look ahead', () => {
     const regexp = new RegExp(
       getAdvancedRegExp(String.raw`base64(?! \w)`),
-      'igm'
+      'igm',
     );
     expect(regexp.test('Base64')).toBeTruthy();
     expect(regexp.test('Base64 foo')).toBeFalsy();
@@ -244,7 +244,7 @@ describe('getAdvancedRegExp', () => {
   test('should not match words inside filenames', () => {
     const regexp = new RegExp(
       getAdvancedRegExp(String.raw`(?<![\.-])css\b`),
-      'igm'
+      'igm',
     );
     expect(regexp.test('typings.for.css.modules.loader')).toBeFalsy();
     expect(regexp.test('typings-for-css-modules-loader')).toBeFalsy();
@@ -258,7 +258,7 @@ describe('getReplacement', () => {
     const result = getReplacement(
       'JavaScript',
       ['npm', 'JavaScript', 'webpack'],
-      'Javascript'
+      'Javascript',
     );
     expect(result).toEqual('JavaScript');
   });
@@ -420,5 +420,5 @@ tester.run(
         ],
       },
     ],
-  }
+  },
 );

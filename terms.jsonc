@@ -250,6 +250,7 @@
   ["built ?in(s)?", "built-in$1"],
   ["client ?side", "client-side"],
   ["command ?line tool(s)?", "command-line tool$1"],
+  ["double ?click(s)?", "double-click$1"],
   ["end ?to ?end", "end-to-end"],
   ["end[- ]?2[- ]?end", "end-to-end"],
   ["e2e", "end-to-end"],

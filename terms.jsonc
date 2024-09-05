@@ -284,6 +284,7 @@
   ["screaming[- ]?snake[- ]?case", "SCREAMING_SNAKE_CASE"],
 
   // Typos
+  ["continues integration", "continuous integration"],
   ["environemnt(s)?", "environment$1"],
   ["flacky test(s)?", "flaky test$1"],
   ["flackyness", "flakiness"],

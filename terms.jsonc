@@ -207,6 +207,7 @@
   ["pre[- ]load(ing|ed)?", "preload$1"],
   ["pre[- ]release(s)?", "prerelease$1"],
   ["re[- ]write", "rewrite"],
+  ["re[- ]export(s|ing|ed)?", "reexport$1"],
   ["run[- ]time", "runtime"],
   ["screen[- ]shot(s)?", "screenshot$1"],
   ["screen[- ]?snap(s)?", "screenshot$1"],

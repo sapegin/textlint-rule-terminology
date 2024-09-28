@@ -228,6 +228,7 @@
   ["code-?splitting", "code splitting"],
   ["color-?blind", "color blind"],
   ["color-?blindness", "color blindness"],
+  ["could-?have(s)?", "could have$1"],
   ["css-?in-?js", "CSS in JS"],
   ["end-?user(s)?", "end user$1"],
   ["file-?type(s)?", "file type$1"],
@@ -238,8 +239,10 @@
   ["lint(?:er|ing)?[ -]?rule(s)?", "linter rule$1"],
   ["lint(?:er|ing)?[ -]?warning(s)?", "linting warning$1"],
   ["micro-?frontend(s)?", "micro frontend$1"],
+  ["must-?have(s)?", "must have$1"],
   ["open-?source(ed?)", "open source$1"],
   ["regexp?(s)?", "regular expression$1"],
+  ["should-?have(s)?", "should have$1"],
   ["source-?map(s)?", "source map$1"],
   ["spell-?check(er|ing)?", "spell check$1"],
   ["style-?guide(s)?", "style guide$1"],
@@ -247,6 +250,7 @@
   ["tree-?shaking", "tree shaking"],
   ["user-?base", "user base"],
   ["web-?page(s)?", "web page$1"],
+  ["won['’]t-?have(s)?", "won’t have$1"],
 
   // Hyphenated
   ["built ?in(s)?", "built-in$1"],

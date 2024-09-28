@@ -240,6 +240,7 @@
   ["lint(?:er|ing)?[ -]?warning(s)?", "linting warning$1"],
   ["micro-?frontend(s)?", "micro frontend$1"],
   ["must-?have(s)?", "must have$1"],
+  ["nice-?to-?have(s)?", "nice to have$1"],
   ["open-?source(ed?)", "open source$1"],
   ["regexp?(s)?", "regular expression$1"],
   ["should-?have(s)?", "should have$1"],

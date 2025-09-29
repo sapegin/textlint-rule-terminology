@@ -2,7 +2,6 @@ import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import stripJsonComments from 'strip-json-comments';
 import { RuleHelper } from 'textlint-rule-helper';
-import upperFirst from 'lodash/upperFirst.js';
 import type { TxtNode, TxtNodeType } from '@textlint/ast-node-types';
 import type {
   TextlintFixableRuleModule,
@@ -34,6 +33,10 @@ const DEFAULT_OPTIONS: Options = {
 
 const sentenceStartRegExp = /\w+[!.?]\)? $/;
 const punctuation = String.raw`[\.,;:!?'"’”)]`;
+
+function upperFirst(text: string) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
 
 function reporter(
   context: TextlintRuleContext,
@@ -86,7 +89,8 @@ function reporter(
               throw new Error('No replacement found');
             }
 
-            // Capitalize word in the beginning of a sentence if the original word was capitalized
+            // Capitalize word in the beginning of a sentence if the original
+            // word was capitalized
             const textBeforeMatch = text.slice(0, Math.max(0, index));
             const isSentenceStart =
               index === 0 || sentenceStartRegExp.test(textBeforeMatch);

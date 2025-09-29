@@ -19,10 +19,11 @@
     "terms.jsonc"
   ],
   "scripts": {
-    "pretest": "npm run lint",
+    "pretest": "npm run lint && npm run typecheck",
     "test": "npm run test:vitest",
     "posttest": "npm run format",
     "lint": "eslint . --cache --fix",
+    "typecheck": "tsc --noEmit",
     "test:vitest": "vitest run",
     "test:watch": "vitest",
     "build": "tsc",
@@ -40,29 +41,26 @@
     "terms"
   ],
   "devDependencies": {
-    "@textlint/ast-node-types": "^14.0.4",
-    "@textlint/types": "^14.0.4",
-    "@types/lodash": "^4.17.7",
-    "eslint": "^9.7.0",
-    "eslint-config-tamia": "^9.1.8",
-    "husky": "^9.1.2",
-    "lint-staged": "^15.2.7",
-    "prettier": "^3.3.3",
-    "textlint-tester": "^14.0.4",
-    "typescript": "^5.5.4",
-    "vitest": "^2.0.4"
+    "@textlint/ast-node-types": "^15.2.2",
+    "@textlint/types": "^15.2.2",
+    "@types/lodash": "^4.17.20",
+    "@types/node": "^24.5.2",
+    "eslint": "^9.36.0",
+    "eslint-config-tamia": "^9.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.3",
+    "prettier": "^3.6.2",
+    "textlint-tester": "^15.2.2",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "strip-json-comments": "^5.0.1",
-    "textlint-rule-helper": "^2.3.1"
+    "strip-json-comments": "^5.0.3",
+    "textlint-rule-helper": "^2.5.0"
   },
   "lint-staged": {
-    "*.{ts,js,mjs,cjs,json,jsonc,md}": [
-      "prettier --write"
-    ],
-    "*.{ts,js,mjs,cjs}": [
-      "eslint --fix"
-    ]
+    "*.{ts,js,mjs,cjs,json,jsonc,md}": "prettier --write",
+    "*.{ts,js,mjs,cjs}": "eslint --fix"
   }
 }

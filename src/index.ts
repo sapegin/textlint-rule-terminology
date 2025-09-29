@@ -60,7 +60,6 @@ function reporter(
       return new Promise<void>((resolve) => {
         if (
           helper.isChildNode(
-            // @ts-expect-error: Who the fuck knows what you want here ;-/
             node,
             options.skip.map((rule) => Syntax[rule]),
           )

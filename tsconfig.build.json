@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "NodeNext",
+    "target": "es2020",
+    "moduleResolution": "NodeNext",
+    "outDir": "out",
+    "lib": ["es2022", "dom"],
+    "sourceMap": false,
+    "rootDir": "src",
+    "strict": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src"],
+  "exclude": ["**/**.test.ts"]
+}

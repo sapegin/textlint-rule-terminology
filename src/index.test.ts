@@ -1,21 +1,23 @@
-import { describe, test, expect } from 'vitest';
 import TextLintTester from 'textlint-tester';
+import { describe, expect, test } from 'vitest';
 import rule, {
-  getTerms,
   findWord,
-  getMultipleWordRegExp,
-  getExactMatchRegExp,
   getAdvancedRegExp,
+  getExactMatchRegExp,
+  getMultipleWordRegExp,
   getReplacement,
-} from './index';
+  getTerms,
+} from './index.js';
 
-const tester = new TextLintTester();
+// HACK: Something is wrong with types here but I can't figure it out
+type T = typeof TextLintTester.default;
+const tester = new (TextLintTester as unknown as T)();
 
 describe('getTerms', () => {
   test('should load default terms', () => {
     const result = getTerms(true, [], []);
     expect(result).toBeTruthy();
-    expect(result?.[0]).toBe('Airbnb');
+    expect(result[0]).toBe('Airbnb');
   });
 
   test('should load user terms', () => {
@@ -36,7 +38,7 @@ describe('getTerms', () => {
     const result = getTerms(false, '../test/terms.json', []);
     expect(result).toBeTruthy();
     expect(result).not.toContain('Airbnb');
-    expect(result?.[0]).toContain('pizza');
+    expect(result[0]).toContain('pizza');
   });
 
   test('should remove the excluded terms', () => {
@@ -276,7 +278,7 @@ tester.run('textlint-rule-terminology', rule, {
     { text: 'My `javascript` is good' },
     // Should skip URLs
     { text: 'My [code](http://example.com/javascript) is good' },
-    // Should keep a capital letter at the beginning of a sentense
+    // Should keep a capital letter at the beginning of a sentence
     { text: 'Webpack is good' },
     // Should not warn when incorrect term is used as a part of another word
     { text: 'Your javascriptish code' },

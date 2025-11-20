@@ -26,7 +26,7 @@
     "typecheck": "tsc --noEmit",
     "test:vitest": "vitest run",
     "test:watch": "vitest",
-    "build": "tsc",
+    "build": "tsc --project tsconfig.build.json",
     "format": "prettier --write \"**/*.{ts,js,mjs,cjs,json,jsonc,md}\"",
     "prepublish": "npm run build",
     "prepare": "husky"
@@ -41,24 +41,24 @@
     "terms"
   ],
   "devDependencies": {
-    "@textlint/ast-node-types": "^15.2.2",
-    "@textlint/types": "^15.2.2",
+    "@textlint/ast-node-types": "^15.4.0",
+    "@textlint/types": "^15.4.0",
     "@types/lodash": "^4.17.20",
-    "@types/node": "^24.5.2",
-    "eslint": "^9.36.0",
-    "eslint-config-tamia": "^9.3.0",
+    "@types/node": "^24.10.1",
+    "eslint": "^9.39.1",
+    "eslint-config-tamia": "^9.9.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.3",
     "prettier": "^3.6.2",
-    "textlint-tester": "^15.2.2",
-    "typescript": "^5.9.2",
-    "vitest": "^3.2.4"
+    "textlint-tester": "^15.4.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.10"
   },
   "dependencies": {
+    "nano-staged": "0.9.0",
     "strip-json-comments": "^5.0.3",
     "textlint-rule-helper": "^2.5.0"
   },
-  "lint-staged": {
+  "nano-staged": {
     "*.{ts,js,mjs,cjs,json,jsonc,md}": "prettier --write",
     "*.{ts,js,mjs,cjs}": "eslint --fix"
   }

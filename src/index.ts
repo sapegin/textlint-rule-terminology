@@ -1,12 +1,12 @@
 import fs from 'node:fs';
 import { createRequire } from 'node:module';
-import stripJsonComments from 'strip-json-comments';
-import { RuleHelper } from 'textlint-rule-helper';
 import type { TxtNode, TxtNodeType } from '@textlint/ast-node-types';
 import type {
   TextlintFixableRuleModule,
   TextlintRuleContext,
 } from '@textlint/types';
+import stripJsonComments from 'strip-json-comments';
+import { RuleHelper } from 'textlint-rule-helper';
 
 /**
  * A term pattern could be:
@@ -57,7 +57,7 @@ function reporter(
   const rules = [...exactWordRules, ...advancedRules];
 
   const helper = new RuleHelper(context);
-  const { Syntax, RuleError, report, fixer, getSource } = context;
+  const { Syntax, RuleError, report, fixer } = context;
   return {
     [Syntax.Str](node: TxtNode) {
       return new Promise<void>((resolve) => {
@@ -70,7 +70,7 @@ function reporter(
           return resolve();
         }
 
-        const text = getSource(node);
+        const text = context.getSource(node);
 
         for (const [pattern, replacements] of rules) {
           const regExp = new RegExp(
@@ -125,17 +125,17 @@ export function getTerms(
 ) {
   const defaults = defaultTerms ? loadJson('../terms.jsonc') : [];
   const extras = typeof terms === 'string' ? loadJson(terms) : terms;
-  // Order matters, the first term to match is used. We prioritize user
-  // 'extras' before defaults
+  // Order matters, the first term to match is used. We prioritize user 'extras'
+  // before defaults
   const listTerms = [...(Array.isArray(extras) ? extras : []), ...defaults];
 
   // Filter on all terms
   if (Array.isArray(exclude)) {
     return listTerms.filter((term) => {
       if (Array.isArray(term)) {
-        return !exclude.includes(term[0]);
+        return exclude.includes(term[0]) === false;
       }
-      return !exclude.includes(term);
+      return exclude.includes(term) === false;
     });
   }
   return listTerms;
@@ -152,15 +152,14 @@ function loadJson(modulePath: string) {
  * Match exact word in the middle of the text
  */
 export function getExactMatchRegExp(pattern: string) {
-  // 1. Beginning of the string, or any character that isn't "-"
-  //    or alphanumeric
+  // 1. Beginning of the string, or any character that isn't "-" or alphanumeric
   // 2. Not a dot "." (to make it ignore file extensions)
   // 3. Word boundary
   // 4. Exact match of the pattern
   // 5. Word boundary
-  // 6. Space, punctuation + space, punctuation + punctuation,
-  //    or punctuation at the end of the string, end of the string
-  return `(?<=^|[^-\\w])(?<!\\.)\\b${pattern}\\b(?= |${punctuation} |${punctuation}${punctuation}|${punctuation}$|$)`;
+  // 6. Space, punctuation + space, punctuation + punctuation, or punctuation at
+  //    the end of the string, end of the string
+  return String.raw`(?<=^|[^-\w])(?<!\.)\b${pattern}\b(?= |${punctuation} |${punctuation}${punctuation}|${punctuation}$|$)`;
 }
 
 /**
@@ -172,7 +171,7 @@ export function getMultipleWordRegExp(words: string[]) {
 
 /**
  * Match pattern on word boundaries in the middle of the text unless the pattern
- * has look behinds or look aheads
+ * has lookbehinds or lookaheads
  */
 export function getAdvancedRegExp(pattern: string) {
   if (
